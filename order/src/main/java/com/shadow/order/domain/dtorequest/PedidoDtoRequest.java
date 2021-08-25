@@ -1,25 +1,22 @@
-package com.shadow.order.domain;
+package com.shadow.order.domain.dtorequest;
 
+import com.shadow.order.domain.Pedido;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Data
-public class Pedido {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_Pedido")
+public class PedidoDtoRequest {
     private Long id;
     @OneToMany
     @Column(name = "desconto_Offer")
@@ -29,5 +26,8 @@ public class Pedido {
     private List<Object> product;
     private Date date;
     private BigDecimal total;
+
+
+
 
 }
