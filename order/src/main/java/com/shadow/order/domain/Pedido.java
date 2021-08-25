@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Data
 public class Pedido {
 
     @Id
@@ -29,6 +30,5 @@ public class Pedido {
     private Date date;
     private String descricao;
     private BigDecimal total;
-
 
 }
