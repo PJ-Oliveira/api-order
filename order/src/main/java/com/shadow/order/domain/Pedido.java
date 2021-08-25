@@ -28,7 +28,6 @@ public class Pedido {
     @Column(name = "valor_Product")
     private List<BigDecimal> product;
     private Date date;
-    private String descricao;
     private BigDecimal total;
 
 }
