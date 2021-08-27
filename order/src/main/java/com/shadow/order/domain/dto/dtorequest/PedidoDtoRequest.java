@@ -12,9 +12,6 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
 @Data
 public class PedidoDtoRequest {
     private Long id;
