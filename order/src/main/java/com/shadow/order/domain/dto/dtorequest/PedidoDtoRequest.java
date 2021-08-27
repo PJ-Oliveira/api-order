@@ -1,4 +1,4 @@
-package com.shadow.order.domain.dtorequest;
+package com.shadow.order.domain.dto.dtorequest;
 
 import com.shadow.order.domain.Pedido;
 import lombok.*;
