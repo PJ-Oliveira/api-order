@@ -7,13 +7,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
 @Data
 public class Pedido {
 
