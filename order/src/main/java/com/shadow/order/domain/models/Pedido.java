@@ -8,11 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 
-@Entity
-@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Entity
+@Table(name = "tb_pedido")
 public class Pedido {
 
     @Id
