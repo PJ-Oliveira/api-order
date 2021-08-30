@@ -15,11 +15,7 @@ import java.util.List;
 @Data
 public class PedidoDtoRequest {
     private Long id;
-    @OneToMany
-    @Column(name = "desconto_Offer")
     private List<Object> desconto;
-    @OneToMany
-    @Column(name = "valor_Product")
     private List<Object> product;
     private Date date;
     private BigDecimal total;
