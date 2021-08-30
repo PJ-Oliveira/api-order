@@ -1,14 +1,14 @@
 package com.shadow.order.service;
 
 
-import com.shadow.order.domain.Pedido;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface OfferService {
+import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 
+public interface ClienteService {
+    
+    
     public List<Object> getOffer();
 
     public List<Object> getOfferById(Long id);
@@ -16,11 +16,7 @@ public interface OfferService {
     public List<Object> getOfferByDesconto(BigDecimal desconto);
 
     public List<Object> getProductByProduct(BigDecimal product);
+    
+    PedidoDtoResponse getById(long id);
 
-    //Pensando
-    /*public static List<Object> savePedidoById(Long id){
-        double total = 0.0;
-        Pedido pedido = new Pedido;
-        return pedido;
-    }*/
 }

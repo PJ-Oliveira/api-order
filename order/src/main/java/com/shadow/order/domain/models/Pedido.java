@@ -1,4 +1,4 @@
-package com.shadow.order.domain;
+package com.shadow.order.domain.models;
 
 import lombok.*;
 

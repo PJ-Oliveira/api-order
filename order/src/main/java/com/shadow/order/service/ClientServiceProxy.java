@@ -1,17 +1,20 @@
 package com.shadow.order.service;
 
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
+
+
 
 @FeignClient(value = "offer", url = "http://localhost:8080/oferta")
-public interface OfferServiceProxy extends OfferService{
+public interface ClientServiceProxy extends ClienteService {
 
-    @Override
+
     @GetMapping
     List<Object> getOffer();
 
@@ -26,4 +29,10 @@ public interface OfferServiceProxy extends OfferService{
     @Override
     @GetMapping("{product}")
     List<Object> getProductByProduct(BigDecimal product);
+
+    @Override
+    @GetMapping("{id}")
+    PedidoDtoResponse getById(long id);
+
+
 }
