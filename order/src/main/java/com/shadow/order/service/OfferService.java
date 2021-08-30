@@ -5,7 +5,7 @@ import com.shadow.order.config.ModelMapperConfig;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.repository.OfferRepository;
+import com.shadow.order.repository.PedidoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class OfferService {
     @Autowired
     private OfferClient offerClient;
     @Autowired
-    private OfferRepository offerRepository;
+    private PedidoRepository pedidoRepository;
     @Autowired
     private ModelMapperConfig modelMapperConfig;
     @Autowired
@@ -24,7 +24,8 @@ public class OfferService {
 
     public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
         Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-        offerRepository.save(pedido);
+
+        pedidoRepository.save(pedido);
         return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
 

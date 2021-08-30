@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
 
+import com.shadow.order.client.OfferClient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

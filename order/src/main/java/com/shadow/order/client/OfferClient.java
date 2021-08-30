@@ -17,4 +17,7 @@ public interface OfferClient {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes = "application/json")
     Object getOfferById(@PathVariable("id") Long id);
 
+    @RequestMapping(method = RequestMethod.GET, value ="status/{id}", consumes = "application/json")
+    Object getStatusOffer(@PathVariable("id") Long id);
+
 }

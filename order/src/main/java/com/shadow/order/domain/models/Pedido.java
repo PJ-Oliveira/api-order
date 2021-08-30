@@ -1,5 +1,6 @@
 package com.shadow.order.domain.models;
 
+import com.shadow.order.client.OfferClient;
 import lombok.*;
 
 import javax.persistence.*;
