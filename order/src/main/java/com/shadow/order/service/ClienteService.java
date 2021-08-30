@@ -1,10 +1,13 @@
 package com.shadow.order.service;
 
 
+import com.shadow.order.domain.Pedido;
+import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.math.BigDecimal;
 import java.util.List;
-
-import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
+import java.util.Optional;
 
 public interface ClienteService {
     
