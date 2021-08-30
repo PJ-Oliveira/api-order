@@ -8,12 +8,11 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/")
+@RequestMapping(value = "/order")
 @Api(tags = {"Order"}, value = "Order Controller")
 @CrossOrigin(origins = "*")
 public class PedidoController {
@@ -33,23 +32,16 @@ public class PedidoController {
         return clientServiceProxy.getOffer();
     }
 
-    /*@GetMapping("{id}")
-    @ApiOperation(httpMethod = "GET", notes = "Busque a oferta pelo seu respectivo ID",tags = {"Busque pelo ID"}, value="Encontre oferta por ID")
+    @GetMapping("/{id}")
+    @ApiOperation(tags = {"Busque pelo ID"}, value="Encontre oferta por ID")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
             @ApiResponse(code = 401, message = "Não autorizado"),
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public List<Object> findOneOrder(Long id){
-        return clientServiceProxy.getOfferById(id);
-    }*/
-
-
-
-
-
-
-
+    public Object findOneOrder(@PathVariable Long id){
+        return clientServiceProxy.getById(id);
+    }
 
 }

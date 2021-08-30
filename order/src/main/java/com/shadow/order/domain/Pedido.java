@@ -17,11 +17,12 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_Pedido")
-    private Long id;
+    private Long idPedido;
     @OneToMany
     @Column(name = "desconto_Offer")
     private List<Object> desconto;
+    @Column(name = "idOffer")
+    private Long id;
     @OneToMany
     @Column(name = "valor_Product")
     private List<Object> product;
