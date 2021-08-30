@@ -36,5 +36,4 @@ public class SwaggerConfig {
     			.contact(new Contact("Info Contato", "Site Contato", "email contato"))
     			.build();
     }
-
 }

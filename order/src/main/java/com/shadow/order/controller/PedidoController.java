@@ -1,6 +1,7 @@
 package com.shadow.order.controller;
 
-import com.shadow.order.service.ClientServiceProxy;
+import com.shadow.order.client.OfferClient;
+import com.shadow.order.service.OfferService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,10 +19,21 @@ import java.util.List;
 public class PedidoController {
 
     @Autowired
-    private final ClientServiceProxy clientServiceProxy;
+    private final OfferService offerService;
+
+
+
+
+
+
+
+
+
+    @Autowired
+    private final OfferClient offerClient;
 
     @GetMapping
-    @ApiOperation(httpMethod = "GET", notes = "Liste todas as ofertas disponíveis aqui no seu Order",tags = {"Lista completa"}, value="Lista de todas as ofertas")
+    @ApiOperation(tags = {"Lista completa"}, value="Lista de todas as ofertas")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
             @ApiResponse(code = 401, message = "Não autorizado"),
@@ -29,7 +41,7 @@ public class PedidoController {
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
     public List<Object> getOffer(){
-        return clientServiceProxy.getOffer();
+        return offerClient.getOffer();
     }
 
     @GetMapping("/{id}")
@@ -41,7 +53,7 @@ public class PedidoController {
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
     public Object findOneOrder(@PathVariable Long id){
-        return clientServiceProxy.getById(id);
+        return offerClient.getById(id);
     }
 
 }

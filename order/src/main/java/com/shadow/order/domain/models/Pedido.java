@@ -24,7 +24,7 @@ public class Pedido {
     @Column(name = "idOffer")
     private Long id;
     @OneToMany
-    @Column(name = "valor_Product")
+    @Column(name = "Product")
     private List<Object> product;
     private Date date;
     private BigDecimal total;

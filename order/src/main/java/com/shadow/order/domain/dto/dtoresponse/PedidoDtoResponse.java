@@ -22,4 +22,5 @@ public class PedidoDtoResponse {
     private List<Object> product;
     private Date date;
     private BigDecimal total;
+    private Long id;
 }
