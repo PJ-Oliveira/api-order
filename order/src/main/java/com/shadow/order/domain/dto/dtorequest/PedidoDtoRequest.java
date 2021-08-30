@@ -12,12 +12,10 @@ import java.util.List;
 @Data
 public class PedidoDtoRequest {
 
-    private Long id;
-    private List<Object> desconto;
-    private List<Object> product;
     private Date date;
     private BigDecimal total;
-
+    private Long idOffer;
+    private Long idProduct;
 
 
 

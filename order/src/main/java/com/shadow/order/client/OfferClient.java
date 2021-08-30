@@ -15,6 +15,6 @@ public interface OfferClient {
     List<Object> getOffer();
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes = "application/json")
-    Object getById(@PathVariable("id") Long id);
+    Object getOfferById(@PathVariable("id") Long id);
 
 }

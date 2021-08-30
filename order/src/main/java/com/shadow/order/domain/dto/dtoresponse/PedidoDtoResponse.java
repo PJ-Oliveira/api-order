@@ -14,13 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class PedidoDtoResponse {
 
-    @OneToMany
-    @Column(name = "desconto_Offer")
-    private List<Object> desconto;
-    @OneToMany
-    @Column(name = "valor_Product")
-    private List<Object> product;
+
     private Date date;
     private BigDecimal total;
-    private Long id;
+    private Long idOffer;
+    private Long idProduct;
+    private Long idPedido;
 }

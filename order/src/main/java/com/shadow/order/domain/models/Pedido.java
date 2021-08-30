@@ -18,15 +18,12 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
-    @OneToMany
-    @Column(name = "desconto_Offer")
-    private List<Object> desconto;
     @Column(name = "idOffer")
-    private Long id;
-    @OneToMany
-    @Column(name = "Product")
-    private List<Object> product;
+    private Long idOffer;
+    @Column(name = "idProduto")
+    private Long idProduct;
     private Date date;
     private BigDecimal total;
+
 
 }
