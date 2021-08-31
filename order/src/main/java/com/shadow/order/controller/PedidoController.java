@@ -46,6 +46,4 @@ public class PedidoController {
                 .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
         return ResponseEntity.created(uri).body(pedidoDtoResponse);
     }
-
-
 }

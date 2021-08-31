@@ -1,12 +1,11 @@
 package com.shadow.order.domain.models;
 
-import com.shadow.order.client.OfferClient;
-import lombok.*;
 
+import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+
 
 
 @NoArgsConstructor
