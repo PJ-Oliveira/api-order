@@ -48,6 +48,34 @@ public class PedidoController {
         return object;
     }
 
+    @GetMapping("desconto/{id}")
+    @ApiOperation(tags = {"Busque pelo ID apenas o valor do desconto"}, value="Mostre apenas o desconto")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado"),
+            @ApiResponse(code = 500, message = "Sistema Indisponível")
+    })
+    public Object showDesconto(@PathVariable long id){
+        Object object = offerClient.getDescontoOffer(id);
+        return object;
+    }
+
+    @GetMapping("fim/{id}")
+    @ApiOperation(tags = {"Busque pelo ID apenas a data final do desconto"}, value="Mostre apenas a data")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado"),
+            @ApiResponse(code = 500, message = "Sistema Indisponível")
+    })
+    public Object showFim(@PathVariable long id){
+        Object object = offerClient.getDataFim(id);
+        return object;
+    }
+
+
+
     @PostMapping("/addPedido")
     @ApiOperation(tags = {"Cadastro"}, value="Faça seu pedido")
     @ApiResponses(value = {
