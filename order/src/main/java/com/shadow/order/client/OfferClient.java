@@ -28,7 +28,7 @@ public interface OfferClient {
     Object getDataFim(@PathVariable("id") Long id);
 
     @RequestMapping(method = RequestMethod.GET, value ="existOrNot/{id}", consumes = "application/json")
-    Object getIdOffer(@PathVariable("id") Long id);
+    Long getIdOffer(@PathVariable("id") Long id);
 
 
 

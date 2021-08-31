@@ -85,14 +85,11 @@ public class PedidoController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<PedidoDtoResponse> create( @RequestBody PedidoDtoRequest pedidoDtoRequest, @Valid Long id) {
-
-        pedidoDtoRequest.setDate(pedidoDtoRequest.getDate());
-        pedidoDtoRequest.setTotal(pedidoDtoRequest.getTotal());
-        pedidoDtoRequest.setIdProduct(pedidoDtoRequest.getIdProduct());
-        pedidoDtoRequest.setIdOffer(pedidoDtoRequest.getIdOffer());
+    public ResponseEntity<PedidoDtoResponse> create(@RequestBody PedidoDtoRequest pedidoDtoRequest, @Valid Long id){
         PedidoDtoResponse pedidoDtoResponse = offerService.save(pedidoDtoRequest);
-        return ResponseEntity.ok().body(pedidoDtoResponse);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
+                .buildAndExpand(pedidoDtoResponse.getIdPedido(), offerClient.getIdOffer(id)).toUri();
+        return ResponseEntity.created(uri).body(pedidoDtoResponse);
     }
 
 
