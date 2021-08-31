@@ -107,7 +107,7 @@ public class PedidoController {
     }
 
     @GetMapping("offer/{id}")
-    @ApiOperation(tags = {"Busque pelo ID"}, value="Encontre oferta por ID")
+    @ApiOperation(tags = {"Busque a Offer pelo ID"}, value="Encontre oferta por ID")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
             @ApiResponse(code = 401, message = "Não autorizado"),
@@ -119,7 +119,7 @@ public class PedidoController {
     }
 
     @GetMapping("product/{id}")
-    @ApiOperation(tags = {"Busque pelo ID"}, value="Encontre product por ID")
+    @ApiOperation(tags = {"Busque o Product pelo ID"}, value="Encontre product por ID")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
             @ApiResponse(code = 401, message = "Não autorizado"),
