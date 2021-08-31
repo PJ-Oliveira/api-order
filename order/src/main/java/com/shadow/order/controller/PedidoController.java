@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -44,7 +45,7 @@ public class PedidoController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<PedidoDtoResponse> create(@RequestBody PedidoDtoRequest pedidoDtoRequest, @PathVariable Long id, @PathVariable @Valid Long idProduto){
+    public ResponseEntity<PedidoDtoResponse> create(@RequestBody PedidoDtoRequest pedidoDtoRequest, @RequestParam  Long id, @RequestParam @Valid Long idProduto){
         PedidoDtoResponse pedidoDtoResponse = pedidoService.save(id, idProduto, pedidoDtoRequest);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
                 .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();

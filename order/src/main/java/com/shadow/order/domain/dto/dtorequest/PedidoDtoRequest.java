@@ -15,8 +15,9 @@ public class PedidoDtoRequest {
 
     private Date date;
     private BigDecimal total;
-    @NotNull
+    @NonNull
     private Long idOffer;
+    @NonNull
     private Long idProduct;
 
 
