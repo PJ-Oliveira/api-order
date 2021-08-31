@@ -1,24 +1,25 @@
 package com.shadow.order.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.service.OfferService;
-import feign.FeignException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,7 +45,7 @@ public class PedidoController {
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
     public Object status(@PathVariable long id){
-        Object object = offerClient.getStatusOffer(id);
+        Object object = offerClient.getOfferStatus(id);
         return object;
     }
 
@@ -84,34 +85,15 @@ public class PedidoController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<?> create(@RequestBody PedidoDtoRequest pedidoDtoRequest, Long id){
-        try {
-            PedidoDtoResponse pedidoDtoResponse = offerService.save(pedidoDtoRequest);
-                Object status = offerClient.getStatusOffer(id);
-            if(status == "ATIVO") {
-                URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{idOffer}")
-                        .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
+    public ResponseEntity<PedidoDtoResponse> create( @RequestBody PedidoDtoRequest pedidoDtoRequest, @Valid Long id) {
 
-                return ResponseEntity.created(uri).body(pedidoDtoResponse);
-            }
-
-        } catch (FeignException.FeignClientException feignClientException) {
-            feignClientException.printStackTrace();
-        } return ResponseEntity.ok().body("O desconto associado a esse produto não existe mais");
-
-    }
-
-    /*public ResponseEntity<?> create(@RequestBody PedidoDtoRequest pedidoDtoRequest, Long id){
-        Object object = offerClient.getStatusOffer(id);
+        pedidoDtoRequest.setDate(pedidoDtoRequest.getDate());
+        pedidoDtoRequest.setTotal(pedidoDtoRequest.getTotal());
+        pedidoDtoRequest.setIdProduct(pedidoDtoRequest.getIdProduct());
+        pedidoDtoRequest.setIdOffer(pedidoDtoRequest.getIdOffer());
         PedidoDtoResponse pedidoDtoResponse = offerService.save(pedidoDtoRequest);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-                .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
-
-        if (object != "INATIVO") {
-            return ResponseEntity.created(uri).body(pedidoDtoResponse);
-        } else return ResponseEntity.ok().body("O desconto associado a esse produto não existe mais");
-
-    }*/
+        return ResponseEntity.ok().body(pedidoDtoResponse);
+    }
 
 
 

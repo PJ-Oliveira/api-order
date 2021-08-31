@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
+import java.util.Optional;
 
 
 @FeignClient(value = "offer", url = "http://localhost:8080/oferta")
@@ -18,13 +19,18 @@ public interface OfferClient {
     Object getOfferById(@PathVariable("id") Long id);
 
     @RequestMapping(method = RequestMethod.GET, value ="status/{id}", consumes = "application/json")
-    Object getStatusOffer(@PathVariable("id") Long id);
+    Object getOfferStatus(@PathVariable("id") Long id);
 
     @RequestMapping(method = RequestMethod.GET, value ="desconto/{id}", consumes = "application/json")
     Object getDescontoOffer(@PathVariable("id") Long id);
 
     @RequestMapping(method = RequestMethod.GET, value ="fim/{id}", consumes = "application/json")
     Object getDataFim(@PathVariable("id") Long id);
+
+    @RequestMapping(method = RequestMethod.GET, value ="existOrNot/{id}", consumes = "application/json")
+    Object getIdOffer(@PathVariable("id") Long id);
+
+
 
 
 

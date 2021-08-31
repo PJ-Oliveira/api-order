@@ -6,9 +6,12 @@ import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.repository.PedidoRepository;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class OfferService {
@@ -24,11 +27,9 @@ public class OfferService {
 
     public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
         Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-
         pedidoRepository.save(pedido);
         return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
-
 
 
 
