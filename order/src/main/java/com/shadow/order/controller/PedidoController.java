@@ -36,18 +36,6 @@ public class PedidoController {
     private final ProductClient productClient;
 
 
-    @GetMapping("status/{id}")
-    @ApiOperation(tags = {"Busque pelo ID apenas o Status"}, value="Mostre apenas o status")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
-            @ApiResponse(code = 401, message = "Não autorizado"),
-            @ApiResponse(code = 404, message = "Recurso não encontrado"),
-            @ApiResponse(code = 500, message = "Sistema Indisponível")
-    })
-    public Object status(@PathVariable long id){
-        Object object = offerClient.getOfferStatus(id);
-        return object;
-    }
 
     @GetMapping("desconto/{id}")
     @ApiOperation(tags = {"Busque pelo ID apenas o valor do desconto"}, value="Mostre apenas o desconto")
