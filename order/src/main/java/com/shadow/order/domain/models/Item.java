@@ -1,23 +1,28 @@
+
 package com.shadow.order.domain.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Entity
-@Table(name = "tb_Item")
+@Data
+@Table(name = "tb_item")
 public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idItem;
+    @OneToOne
+    @NotNull
     private Offer offer;
+    @OneToOne
     private Product product;
+    private BigDecimal total;
+
+
 
 
 

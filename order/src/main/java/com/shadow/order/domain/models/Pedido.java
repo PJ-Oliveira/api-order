@@ -1,14 +1,10 @@
 package com.shadow.order.domain.models;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +21,11 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> itemList;
+    @OneToMany
+    @JoinColumn(name = "pedido_id")
+    @NotNull
+    private List<Item> item;
     private BigDecimal total;
+
 
 }

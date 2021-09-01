@@ -33,16 +33,7 @@ public class PedidoServiceTest {
     @InjectMocks
     private PedidoService pedidoService;
 
-    @Test
-    public void testSave() {
-        when(this.offerClient.getIdOffer((Long) any())).thenReturn(1L);
-        when(this.modelMapper.map((Object) any(), (Class<Object>) any())).thenThrow(new OrderException());
-        PedidoDtoRequest pedidoDtoRequest = new PedidoDtoRequest();
-        assertNull(this.pedidoService.save(1L, pedidoDtoRequest));
-        verify(this.offerClient).getIdOffer((Long) any());
-        verify(this.modelMapper).map((Object) any(), (Class<Object>) any());
-        assertEquals(1L, pedidoDtoRequest.getIdOffer().longValue());
-    }
+
 
 }
 
