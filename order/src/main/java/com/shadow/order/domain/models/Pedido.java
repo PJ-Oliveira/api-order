@@ -1,9 +1,7 @@
 package com.shadow.order.domain.models;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,8 +23,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> itemList;
+   
     private BigDecimal total;
 
 }
