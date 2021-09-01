@@ -11,10 +11,8 @@ import com.shadow.order.domain.models.Product;
 public interface ProductClient {
 
 
-//    @RequestMapping(method = RequestMethod.GET, value = "product/{id}", consumes = "application/json")
-//    Long getByIdProduct(@PathVariable("id") Long id);
-
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes ="application/json")
+    
+   @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes ="application/json")
     Product getById(@PathVariable("id")Long id);
-
+    
 }

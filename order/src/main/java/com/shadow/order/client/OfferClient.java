@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface OfferClient {
 
 
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes ="application/json")
     Offer getById(@PathVariable("id")Long id);
 
 
 
+
+	
+	
 }

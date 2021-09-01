@@ -1,4 +1,3 @@
-
 package com.shadow.order.controller;
 
 import com.shadow.order.client.OfferClient;
@@ -13,28 +12,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.models.Product;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 
+
 @RestController
 @RequestMapping(value = "/order")
 @RequiredArgsConstructor
 public class PedidoController {
-
-
-    @Autowired
-    private final ProductClient productClient;
+	
+	
+	@Autowired
+	private final ProductClient productClient;
 
     @Autowired
     private final OfferClient offerClient;
     @Autowired
     private final PedidoService pedidoService;
+
 
 
     @PostMapping("/post")
@@ -52,7 +60,6 @@ public class PedidoController {
         return ResponseEntity.created(uri).body(pedidoDtoResponse);
     }
 
-
     @GetMapping("products/{id}")
     public Product getProduct(@PathVariable Long id){
 
@@ -64,9 +71,6 @@ public class PedidoController {
 
         return offerClient.getById(id);
     }
-
-
-
 
 
 }
