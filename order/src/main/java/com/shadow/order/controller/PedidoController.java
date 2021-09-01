@@ -32,7 +32,7 @@ public class PedidoController {
     @Autowired
     private final ProductClient productClient;
 
-    @PostMapping("/addPedido")
+    @PostMapping("/")
     @ApiOperation(tags = {"Cadastro"}, value="Faça seu pedido")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
