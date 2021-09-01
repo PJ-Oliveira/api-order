@@ -1,5 +1,13 @@
 package com.shadow.order.domain.models;
 
+<<<<<<< HEAD
+
+import lombok.*;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+=======
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,6 +21,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+>>>>>>> dev001
 
 
 @NoArgsConstructor
@@ -31,6 +40,5 @@ public class Pedido {
     private Long idProduct;
     private Date date;
     private BigDecimal total;
-
 
 }
