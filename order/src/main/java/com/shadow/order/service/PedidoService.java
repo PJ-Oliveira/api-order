@@ -25,14 +25,11 @@ public class PedidoService {
     @Autowired
     private ProductClient productClient;
 
-    public PedidoDtoResponse save(Long id,PedidoDtoRequest pedidoDtoRequest){
-        try {
-            pedidoDtoRequest.setIdOffer(offerClient.getIdOffer(id));
+    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
             Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
             pedidoRepository.save(pedido);
             return modelMapper.map(pedido, PedidoDtoResponse.class);
-        }catch(OrderException orderException){
-            return null;
-        }
+
+
     }
 }

@@ -20,13 +20,8 @@ import lombok.NonNull;
 @Data
 public class PedidoDtoRequest {
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> itemList;
+    private List<Item> item;
     private BigDecimal total;
-    @NonNull
-    private Long idOffer;
-    @NonNull
-    private Long idProduct;
 
 
 

@@ -1,3 +1,4 @@
+
 package com.shadow.order.domain.models;
 
 import javax.persistence.Entity;
@@ -11,7 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+
+@Entity
 @Data
+<<<<<<< HEAD
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -26,7 +33,23 @@ public class Item {
 	private Offer offer;
     
 	@OneToOne
+=======
+@Table(name = "tb_item")
+public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    private Long idItem;
+    @OneToOne
+    @NotNull
+    private Offer offer;
+    @OneToOne
+>>>>>>> bbf5179a3b3d444630d0e3d53dc12a9aa56cfe6b
     private Product product;
+    private BigDecimal total;
+
+
 
 
 
