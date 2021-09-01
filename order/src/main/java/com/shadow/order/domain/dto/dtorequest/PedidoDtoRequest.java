@@ -1,7 +1,10 @@
 package com.shadow.order.domain.dto.dtorequest;
 
+import com.shadow.order.domain.models.Item;
 import lombok.*;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -14,12 +17,9 @@ import java.util.List;
 @Data
 public class PedidoDtoRequest {
 
-    private Date date;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Item> itemList;
     private BigDecimal total;
-    @NotNull
-    private List<Long> idOffer;
-    private List<Long> idProduct;
 
-    //todo:Precisa ser List, pois um Pedido pode ter tanto múltiplos produtos quanto múltiplas promoções ligadas a seus respectivos produtos
 
 }
