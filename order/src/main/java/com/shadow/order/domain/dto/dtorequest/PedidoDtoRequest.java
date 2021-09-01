@@ -1,11 +1,12 @@
 package com.shadow.order.domain.dto.dtorequest;
 
-import lombok.*;
-
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 @NoArgsConstructor
@@ -15,8 +16,9 @@ public class PedidoDtoRequest {
 
     private Date date;
     private BigDecimal total;
-    @NotNull
+    @NonNull
     private Long idOffer;
+    @NonNull
     private Long idProduct;
 
 
