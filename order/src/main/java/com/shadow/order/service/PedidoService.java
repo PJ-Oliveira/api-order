@@ -1,5 +1,6 @@
 package com.shadow.order.service;
 
+import com.shadow.order.advice.exception.OrderException;
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.config.ModelMapperConfig;
@@ -9,6 +10,7 @@ import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.repository.PedidoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -25,9 +27,14 @@ public class PedidoService {
     private ProductClient productClient;
 
     public PedidoDtoResponse save(Long id,PedidoDtoRequest pedidoDtoRequest){
-        pedidoDtoRequest.setIdOffer(offerClient.getIdOffer(id));
-        Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-        pedidoRepository.save(pedido);
-        return modelMapper.map(pedido, PedidoDtoResponse.class);
+        try {
+            pedidoDtoRequest.setIdOffer(offerClient.getIdOffer(id));
+
+            Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+            pedidoRepository.save(pedido);
+            return modelMapper.map(pedido, PedidoDtoResponse.class);
+        }catch(OrderException orderException){
+            return null;
+        }
     }
 }

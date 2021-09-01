@@ -25,5 +25,4 @@ public class Pedido {
     private Date date;
     private BigDecimal total;
 
-
 }
