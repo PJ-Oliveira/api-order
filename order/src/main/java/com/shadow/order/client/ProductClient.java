@@ -9,14 +9,8 @@ import com.shadow.order.domain.models.Product;
 
 @FeignClient(value = "${feign.product.name}", url = "${feign.product.url}")
 public interface ProductClient {
-<<<<<<< HEAD
    
- 
-=======
-
-
     
->>>>>>> bbf5179a3b3d444630d0e3d53dc12a9aa56cfe6b
    @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes ="application/json")
     Product getById(@PathVariable("id")Long id);
     
