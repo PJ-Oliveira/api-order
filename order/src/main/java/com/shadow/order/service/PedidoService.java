@@ -27,9 +27,8 @@ public class PedidoService {
 
     public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
             Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+            System.out.print(pedido);
             pedidoRepository.save(pedido);
             return modelMapper.map(pedido, PedidoDtoResponse.class);
-
-
     }
 }

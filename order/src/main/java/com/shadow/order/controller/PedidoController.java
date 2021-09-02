@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -37,7 +38,6 @@ public class PedidoController {
 	
 	@Autowired
 	private final ProductClient productClient;
-
     @Autowired
     private final OfferClient offerClient;
     @Autowired
@@ -45,7 +45,8 @@ public class PedidoController {
 
 
 
-    @PostMapping("/post")
+    @Transactional
+    @PostMapping
     @ApiOperation(tags = {"Cadastro"}, value="Cadastro de Pedidos")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
@@ -59,6 +60,7 @@ public class PedidoController {
                 .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
         return ResponseEntity.created(uri).body(pedidoDtoResponse);
     }
+
 
     @GetMapping("products/{id}")
     public Product getProduct(@PathVariable Long id){

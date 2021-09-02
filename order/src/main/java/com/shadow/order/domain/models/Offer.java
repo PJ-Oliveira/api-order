@@ -21,22 +21,13 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 public class Offer {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-
     private Long idOffer;
-    @NotNull
     private BigDecimal desconto;
-    @NotNull
-    private Date inicio;
-    @NotNull
-    private Date fim;
-    private String descricao;
+
 
 }

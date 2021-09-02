@@ -1,5 +1,6 @@
 package com.shadow.order.domain.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.List;
@@ -14,9 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Persister;
 
 
 @NoArgsConstructor
@@ -24,16 +24,25 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "tb_pedido")
-public class Pedido {
+@ToString
+@Builder
+public class Pedido implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PEDIDO_ID")
     private Long idPedido;
-    @OneToMany
-    @JoinColumn(name = "pedido_id")
-    @NotNull
+    @Embedded
+    @AttributeOverrides
+            ({@AttributeOverride(name = "idOffer", column = @Column(name = "OFFER_ID")),
+            @AttributeOverride(name = "desconto", column = @Column(name = "DESCONTO")),
+            @AttributeOverride(name = "idProduct", column = @Column(name = "PRODUCT_ID")),
+            @AttributeOverride(name = "nome", column = @Column(name = "NOME")),
+            @AttributeOverride(name = "totalItens", column = @Column(name = "totalItens")),
+            @AttributeOverride(name = "preco", column = @Column(name = "PRECO"))})
+    @Column(name = "ITENS")
     private List<Item> item;
-
+    @Column(name = "TOTAL")
     private BigDecimal total;
 
 
