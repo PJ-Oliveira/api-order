@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+<<<<<<< HEAD
 
 public class Offer {
 
@@ -21,5 +22,15 @@ public class Offer {
     private Date inicio;
     private Date fim;
     private String descricao;
+=======
+@Entity
+public class Offer {
+
+
+    @Id
+    private Long idOffer;
+    private BigDecimal desconto;
+
+>>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
 
 }
