@@ -4,7 +4,10 @@ import com.shadow.order.client.OfferClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Offer;
+import com.shadow.order.domain.models.Pedido;
+import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.service.PedidoService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -33,6 +36,7 @@ import java.net.URI;
 @RestController
 @RequestMapping(value = "/order")
 @RequiredArgsConstructor
+@Api(tags = {"PEDIDO"}, value = "Controller PEDIDO")
 public class PedidoController {
 	
 	
@@ -42,6 +46,10 @@ public class PedidoController {
     private final OfferClient offerClient;
     @Autowired
     private final PedidoService pedidoService;
+
+
+
+
 
 
 

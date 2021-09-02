@@ -7,21 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-@Embeddable
+@Entity
+@Table(name = "tb_item")
 public class Item {
 
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ITEM_ID", unique = true, nullable = false)
+    private Long idItem;
     @Column(name = "OFFER_ID")
     private Long idOffer;
     @Column(name = "DESCONTO")
