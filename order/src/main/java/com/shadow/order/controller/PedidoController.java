@@ -35,7 +35,7 @@ public class PedidoController {
 
     @Transactional
     @PostMapping
-    @ApiOperation(tags = {"Cadastro"}, value="Cadastro de Pedidos")
+    @ApiOperation(value = "Realiza cadastro de pedidos")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
