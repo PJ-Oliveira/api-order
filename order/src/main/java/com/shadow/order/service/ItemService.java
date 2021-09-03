@@ -1,5 +1,6 @@
 package com.shadow.order.service;
 
+import com.shadow.order.advice.exception.OrderException;
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.dto.dtorequest.ItemDtoRequest;
@@ -29,6 +30,12 @@ public class ItemService {
     public ItemDtoResponse save(ItemDtoRequest itemDtoRequest){
         Item item = modelMapper.map(itemDtoRequest, Item.class);
         itemRepository.save(item);
+        return modelMapper.map(item, ItemDtoResponse.class);
+    }
+
+    public ItemDtoResponse getById(Long id){
+        Item item = itemRepository.findById(id)
+                .orElseThrow(()-> new OrderException("Resource with id: " + id + "not found"));
         return modelMapper.map(item, ItemDtoResponse.class);
     }
 

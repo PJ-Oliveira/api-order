@@ -1,5 +1,6 @@
 package com.shadow.order.service;
 
+import com.shadow.order.domain.models.Offer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,12 @@ public class PedidoService {
             Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
             pedidoRepository.save(pedido);
             return modelMapper.map(pedido, PedidoDtoResponse.class);
+    }
+
+    public PedidoDtoResponse getById(Long id){
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(()-> new OrderException("Resource with id: " + id + "not found"));
+        return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
 
 

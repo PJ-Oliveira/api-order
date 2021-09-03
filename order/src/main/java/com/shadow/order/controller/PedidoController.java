@@ -48,11 +48,6 @@ public class PedidoController {
     private final PedidoService pedidoService;
 
 
-
-
-
-
-
     @Transactional
     @PostMapping
     @ApiOperation(tags = {"Cadastro"}, value="Cadastro de Pedidos")
@@ -68,6 +63,21 @@ public class PedidoController {
                 .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
         return ResponseEntity.created(uri).body(pedidoDtoResponse);
     }
+
+    @GetMapping("{id}")
+    @ApiOperation(httpMethod = "GET", notes = "Busque a pedido pelo seu respectivo ID",tags = {"Busque pelo ID"}, value="Encontre pedido por ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado"),
+            @ApiResponse(code = 500, message = "Sistema Indisponível")
+    })
+    public ResponseEntity<PedidoDtoResponse> findOneOffer(@Valid @PathVariable long id){
+        PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
+        return ResponseEntity.ok().body(pedidoDtoResponse);
+    }
+
+
 
 
     @GetMapping("products/{id}")

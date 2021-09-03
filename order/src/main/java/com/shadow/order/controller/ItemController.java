@@ -14,10 +14,7 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.transaction.Transactional;
@@ -52,6 +49,19 @@ public class ItemController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
                 .buildAndExpand(itemDtoResponse.getIdItem()).toUri();
         return ResponseEntity.created(uri).body(itemDtoResponse);
+    }
+
+    @GetMapping("{id}")
+    @ApiOperation(httpMethod = "GET", notes = "Busque a item pelo seu respectivo ID",tags = {"Busque pelo ID"}, value="Encontre item por ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado"),
+            @ApiResponse(code = 500, message = "Sistema Indisponível")
+    })
+    public ResponseEntity<ItemDtoResponse> findOneOffer(@Valid @PathVariable long id){
+        ItemDtoResponse itemDtoResponse = itemService.getById(id);
+        return ResponseEntity.ok().body(itemDtoResponse);
     }
 
 
