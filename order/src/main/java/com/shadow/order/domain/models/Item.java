@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -23,10 +24,11 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long idItem;
     
     private Long idOffer;
-   
+
     private BigDecimal desconto;
    
     private Long idProduct;

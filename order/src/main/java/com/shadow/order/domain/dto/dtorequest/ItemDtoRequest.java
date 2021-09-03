@@ -1,6 +1,5 @@
 package com.shadow.order.domain.dto.dtorequest;
 
-
 import java.math.BigDecimal;
 
 import javax.validation.constraints.NotEmpty;
@@ -19,6 +18,7 @@ public class ItemDtoRequest {
 	@ApiModelProperty(value = "Id da oferta referente ao produto",example =  "1",required = true)
 	@NotNull(message = "${field.item.idOffer.not.null}")
     private Long idOffer;
+
 	
 	@ApiModelProperty(value = "Valor do desconto referente a oferta informada", example = "2.99", required = true)
 	@NotNull(message = "${field.item.desconto.not.empty}")

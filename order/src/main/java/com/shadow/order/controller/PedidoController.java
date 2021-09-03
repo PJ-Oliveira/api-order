@@ -18,9 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
-import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.repository.ItemRepository;
-import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.service.PedidoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -31,9 +28,11 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping(value = "/order")
 public class PedidoController {
+
 	
     @Autowired
     private  PedidoService pedidoService;
+
 
     @PostMapping
     @ApiOperation(value = "Realiza cadastro de pedidos")
@@ -59,17 +58,7 @@ public class PedidoController {
     }    
     
     
-    @GetMapping("/{id}")
-    @ApiOperation(value = "Exibe um pedido informando um id válido")
-   	@ApiResponses(value = {
-   			@ApiResponse(code = 200, message = "Requisição bem sucedida"),
-   			@ApiResponse(code = 404, message = "Recurso não encontrado"),
-   			@ApiResponse(code = 500, message = "Sistema indisponivel")})
-    public ResponseEntity<PedidoDtoResponse> findById(@PathVariable Long id){
-    	PedidoDtoResponse pedidoResponse = pedidoService.findById(id);
-    	return ResponseEntity.ok(pedidoResponse);
-
-    }
+   
 
     
     @DeleteMapping("/{id}")
@@ -82,5 +71,20 @@ public class PedidoController {
     	this.pedidoService.delete(id);
     	return ResponseEntity.badRequest().build();
     }
+    
+
+    @GetMapping("{id}")
+    @ApiOperation(httpMethod = "GET", notes = "Busque a pedido pelo seu respectivo ID",tags = {"Busque pelo ID"}, value="Encontre pedido por ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado"),
+            @ApiResponse(code = 500, message = "Sistema Indisponível")
+    })
+    public ResponseEntity<PedidoDtoResponse> findOneOffer(@Valid @PathVariable long id){
+        PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
+        return ResponseEntity.ok().body(pedidoDtoResponse);
+    }
+
     
 }

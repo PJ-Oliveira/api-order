@@ -23,8 +23,10 @@ import com.shadow.order.validator.Validate;
 
 
 
+
 @Service
 public class PedidoService {
+
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
@@ -49,12 +51,12 @@ public class PedidoService {
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
 
+   
     public PedidoDtoResponse getById(Long id){
         Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(()-> new InvalidOrderException("Resource with id: " + id + "not found"));
         return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
-
 
 
 	public List<PedidoDtoResponse> getAll() {

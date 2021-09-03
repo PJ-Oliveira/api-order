@@ -1,24 +1,23 @@
-package com.shadow.order.domain.models;
+package com.shadow.order.domain.dto.dtorequest;
 
 
 import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-
-
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Offer {
+@Getter
+@Setter
+@ToString
+public class OfferDtoRequest {
 
-
-    
     private Long idOffer;
     private BigDecimal desconto;
- 
-
+   
 
 }
