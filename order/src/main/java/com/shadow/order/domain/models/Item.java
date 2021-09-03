@@ -28,22 +28,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-@Embeddable
+@Entity
+@Table(name = "tb_item")
 public class Item {
 
+<<<<<<< HEAD
 >>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
 
 
+=======
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ITEM_ID", unique = true, nullable = false)
+    private Long idItem;
+>>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
     @Column(name = "OFFER_ID")
     private Long idOffer;
     @Column(name = "DESCONTO")

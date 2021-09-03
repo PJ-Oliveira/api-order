@@ -1,23 +1,9 @@
 package com.shadow.order.controller;
 
-<<<<<<< HEAD
 import java.net.URI;
 
 import javax.validation.Valid;
 
-=======
-import com.shadow.order.client.OfferClient;
-import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
-import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
-import com.shadow.order.domain.models.Offer;
-import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.repository.PedidoRepository;
-import com.shadow.order.service.PedidoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
->>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,13 +35,7 @@ import java.net.URI;
 
 
 @RestController
-<<<<<<< HEAD
 @RequestMapping("/order")
-=======
-@RequestMapping(value = "/order")
-@RequiredArgsConstructor
-@Api(tags = {"PEDIDO"}, value = "Controller PEDIDO")
->>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
 public class PedidoController {
 	
 	
@@ -74,10 +54,6 @@ public class PedidoController {
     private final OfferClient offerClient;
     @Autowired
     private final PedidoService pedidoService;
-
-
-
-
 
 
 

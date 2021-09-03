@@ -1,83 +1,47 @@
 package com.shadow.order.controller;
 
-<<<<<<< HEAD
-import java.net.URI;
-
-import javax.validation.Valid;
-
-=======
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Offer;
-import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.service.PedidoService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
->>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+
+import com.shadow.order.client.ProductClient;
+import com.shadow.order.domain.models.Product;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-<<<<<<< HEAD
-import com.shadow.order.client.OfferClient;
-import com.shadow.order.domain.dto.dtorequest.ItemDtoRequest;
-import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
-import com.shadow.order.domain.dto.dtoresponse.ItemDtoResponse;
-import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
-import com.shadow.order.domain.models.Offer;
-import com.shadow.order.service.ItemService;
-import com.shadow.order.service.PedidoService;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-=======
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
->>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
 
 
 @RestController
-<<<<<<< HEAD
-@RequestMapping("/order")
-=======
 @RequestMapping(value = "/order")
 @RequiredArgsConstructor
-@Api(tags = {"PEDIDO"}, value = "Controller PEDIDO")
->>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
 public class PedidoController {
 	
 	
 	@Autowired
-<<<<<<< HEAD
-	private ItemService itemService;
-
-    @Autowired
-    private OfferClient offerClient;
-   
-   
-
-=======
 	private final ProductClient productClient;
     @Autowired
     private final OfferClient offerClient;
     @Autowired
     private final PedidoService pedidoService;
-
-
-
-
 
 
 
@@ -100,11 +64,9 @@ public class PedidoController {
 
     @GetMapping("products/{id}")
     public Product getProduct(@PathVariable Long id){
->>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
 
-
-   
-
+        return productClient.getById(id);
+    }
 
     @GetMapping("/oferta/{id}")
     public Offer getOffer(@PathVariable Long id){
@@ -112,7 +74,5 @@ public class PedidoController {
         return offerClient.getById(id);
     }
 
-    
-    
 
 }

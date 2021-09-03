@@ -2,6 +2,7 @@ package com.shadow.order.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shadow.order.client.OfferClient;
@@ -11,6 +12,7 @@ import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.repository.PedidoRepository;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Service
@@ -27,7 +29,6 @@ public class PedidoService {
 
     public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
             Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-            System.out.print(pedido);
             pedidoRepository.save(pedido);
             return modelMapper.map(pedido, PedidoDtoResponse.class);
 <<<<<<< HEAD
@@ -35,5 +36,12 @@ public class PedidoService {
 =======
 >>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
     }
+<<<<<<< HEAD
     
+=======
+
+
+
+
+>>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
 }

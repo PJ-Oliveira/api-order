@@ -2,6 +2,11 @@ package com.shadow.order.domain.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+<<<<<<< HEAD
+=======
+
+import java.util.ArrayList;
+>>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -36,19 +41,11 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PEDIDO_ID")
     private Long idPedido;
-    @Embedded
-    @AttributeOverrides
-            ({@AttributeOverride(name = "idOffer", column = @Column(name = "OFFER_ID")),
-            @AttributeOverride(name = "desconto", column = @Column(name = "DESCONTO")),
-            @AttributeOverride(name = "idProduct", column = @Column(name = "PRODUCT_ID")),
-            @AttributeOverride(name = "nome", column = @Column(name = "NOME")),
-            @AttributeOverride(name = "totalItens", column = @Column(name = "totalItens")),
-            @AttributeOverride(name = "preco", column = @Column(name = "PRECO"))})
-    @Column(name = "ITENS")
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.MERGE)
+    @Column(name = "ITEM")
     private List<Item> item;
     @Column(name = "TOTAL")
 >>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
     private BigDecimal total;
-
 
 }

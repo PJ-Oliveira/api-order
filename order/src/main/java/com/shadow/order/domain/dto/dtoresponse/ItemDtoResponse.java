@@ -33,15 +33,11 @@ import java.util.List;
 @ToString
 public class ItemDtoResponse {
 
-    @Column(name = "OFFER_ID")
+    private Long idItem;
     private Long idOffer;
-    @Column(name = "DESCONTO")
     private BigDecimal desconto;
-    @Column(name = "PRODUCT_ID")
     private Long idProduct;
-    @Column(name = "NOME")
     private String nome;
-    @Column(name = "PRECO")
     private BigDecimal totalItens;
     private BigDecimal preco;
 >>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
