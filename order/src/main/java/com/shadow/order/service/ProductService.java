@@ -16,12 +16,16 @@ public class ProductService {
 	
 	@Autowired
 	private ProductClient productClient;
+	
+
 
 	
 	public ProductDto getProduct(Long id) {
 		Product product = productClient.getById(id);
 		return modelMapper.map(product, ProductDto.class);	
 	}
+	
+	
 	
 
 }

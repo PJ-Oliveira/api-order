@@ -25,8 +25,6 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "tb_pedido")
-@ToString
-@Builder
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 4309354846999047854L;
@@ -36,7 +34,7 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PEDIDO_ID")
     private Long idPedido;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @Column(name = "ITEM")
     private List<Item> item;
     @Column(name = "TOTAL")

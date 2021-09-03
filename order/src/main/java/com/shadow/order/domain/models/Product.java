@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 public class Product {
 
-    private Long idProduct;
+    private Long id;
     private String nome;
     private BigDecimal preco;
 
