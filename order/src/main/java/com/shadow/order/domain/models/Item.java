@@ -1,34 +1,21 @@
 
 package com.shadow.order.domain.models;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
-<<<<<<< HEAD
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-
-public class Item {
-
-    
-    private Long id;
-    private Long id_product;
-    private String product_name;
-    //private BigDecimal precoProduct;
-    private int quantidade;
-    //private BigDecimal total;
-   
-
-
-=======
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 @NoArgsConstructor
@@ -39,16 +26,10 @@ import java.math.BigDecimal;
 @Table(name = "tb_item")
 public class Item {
 
-<<<<<<< HEAD
->>>>>>> 18234e2a9fc6ef2d36b501dd75da48cdbfd0b9cb
-
-
-=======
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID", unique = true, nullable = false)
     private Long idItem;
->>>>>>> 61ee44e00609cad064417102389530ba6c62d4dc
     @Column(name = "OFFER_ID")
     private Long idOffer;
     @Column(name = "DESCONTO")
@@ -61,5 +42,5 @@ public class Item {
     private BigDecimal totalItens;
     @Column(name = "PRECO")
     private BigDecimal preco;
-
+    
 }
