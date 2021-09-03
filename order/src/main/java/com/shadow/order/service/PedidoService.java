@@ -1,5 +1,6 @@
 package com.shadow.order.service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -33,6 +34,19 @@ public class PedidoService {
             pedidoRepository.save(pedido);
             return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
+    
+    
+    public List<PedidoDtoResponse> getAll() {
+    	List<Pedido> pedido = pedidoRepository.findAll();
+    	return pedido.stream()
+    			.map(p -> modelMapper.map(p, PedidoDtoResponse.class))
+    			.collect(Collectors.toList());
+    	
+    	
+    }
+    
+    
+    
 
 
 }

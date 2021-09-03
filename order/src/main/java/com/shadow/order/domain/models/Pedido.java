@@ -1,6 +1,5 @@
 package com.shadow.order.domain.models;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,10 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 @NoArgsConstructor
@@ -25,10 +22,8 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "tb_pedido")
-public class Pedido implements Serializable {
+public class Pedido {
 
-	private static final long serialVersionUID = 4309354846999047854L;
-	
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
