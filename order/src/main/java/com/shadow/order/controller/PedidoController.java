@@ -4,8 +4,6 @@ import com.shadow.order.client.OfferClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Offer;
-import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.service.PedidoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,8 +36,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 @Api(tags = {"PEDIDO"}, value = "Controller PEDIDO")
 public class PedidoController {
-	
-	
+
 	@Autowired
 	private final ProductClient productClient;
     @Autowired
@@ -47,6 +44,7 @@ public class PedidoController {
     @Autowired
     private final PedidoService pedidoService;
 
+    //validação: 1) se existe, 2)  se está vencida.
 
     @Transactional
     @PostMapping
@@ -77,20 +75,17 @@ public class PedidoController {
         return ResponseEntity.ok().body(pedidoDtoResponse);
     }
 
-
-
-
     @GetMapping("products/{id}")
     public Product getProduct(@PathVariable Long id){
 
         return productClient.getById(id);
     }
 
-    @GetMapping("/oferta/{id}")
+    /*@GetMapping("/oferta/{id}")
     public Offer getOffer(@PathVariable Long id){
 
         return offerClient.getById(id);
-    }
+    }*/
 
 
 }
