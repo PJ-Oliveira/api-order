@@ -3,7 +3,6 @@ package com.shadow.order.controller;
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
-import com.shadow.order.domain.models.Offer;
 import com.shadow.order.service.PedidoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,20 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.models.Product;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
@@ -45,8 +38,6 @@ public class PedidoController {
     private final OfferClient offerClient;
     @Autowired
     private final PedidoService pedidoService;
-
-    //validação: 1) se existe, 2)  se está vencida.
 
     @Transactional
     @PostMapping
@@ -72,22 +63,11 @@ public class PedidoController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<PedidoDtoResponse> findOneOffer(@Valid @PathVariable long id){
+    public ResponseEntity<?> findOneOffer(@Valid @PathVariable long id){
         PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
-        return ResponseEntity.ok().body(pedidoDtoResponse);
+        if(pedidoDtoResponse != null) {
+            return ResponseEntity.ok().body(pedidoDtoResponse);
+        } return ResponseEntity.ok().body("Offer Id ou Product id invalid");
     }
-
-    @GetMapping("products/{id}")
-    public Product getProduct(@PathVariable Long id){
-
-        return productClient.getById(id);
-    }
-
-    /*@GetMapping("/oferta/{id}")
-    public Offer getOffer(@PathVariable Long id){
-
-        return offerClient.getById(id);
-    }*/
-
 
 }

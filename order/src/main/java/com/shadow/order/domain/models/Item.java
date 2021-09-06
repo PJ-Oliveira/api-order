@@ -5,12 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cloud.openfeign.FeignClient;
+
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
 import java.math.BigDecimal;
-import java.util.Date;
+
 
 
 @NoArgsConstructor
@@ -27,9 +26,6 @@ public class Item {
     private Long idItem;
     @Column(name = "OFFER_ID")
     private Long idOffer;
-    /*@Future
-    @Column(name = "OFFER_FIM")
-    private Date fim;*/
     @Column(name = "DESCONTO")
     private BigDecimal desconto;
     @Column(name = "PRODUCT_ID")

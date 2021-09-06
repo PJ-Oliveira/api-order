@@ -1,14 +1,9 @@
 package com.shadow.order.domain.dto.dtoresponse;
 
 
-import com.shadow.order.domain.models.Offer;
-import com.shadow.order.domain.models.Product;
-import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
+import lombok.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor

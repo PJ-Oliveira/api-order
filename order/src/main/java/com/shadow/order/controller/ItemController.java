@@ -59,7 +59,7 @@ public class ItemController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<ItemDtoResponse> findOneOffer(@Valid @PathVariable long id){
+    public ResponseEntity<ItemDtoResponse> findOneItem(@Valid @PathVariable long id){
         ItemDtoResponse itemDtoResponse = itemService.getById(id);
         return ResponseEntity.ok().body(itemDtoResponse);
     }
