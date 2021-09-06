@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class OrderControllerAdvice
         extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
-            (value = { IllegalArgumentException.class, IllegalStateException.class, OrderException.class, Exception.class})
+            (value = { IllegalArgumentException.class, IllegalStateException.class, OrderException.class})
     protected ResponseEntity<Object> handleConflict(
             RuntimeException runtimeException, WebRequest request) {
         return handleExceptionInternal(runtimeException, null,
