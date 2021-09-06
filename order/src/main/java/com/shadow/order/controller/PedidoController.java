@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 
+@Validated
 @RestController
 @RequestMapping(value = "/order")
 @RequiredArgsConstructor

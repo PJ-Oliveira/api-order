@@ -32,12 +32,16 @@ public class PedidoService {
 
     public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
         Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+
         pedido.getItem().stream()
-                .map(i -> i.getIdOffer().equals(offerClient.findOneOffer(i.getIdOffer())))
-                .collect(Collectors.toList());;
+                .map(i -> i.getIdOffer()
+                        .equals(offerClient.findOneOffer(i.getIdOffer())))
+                .collect(Collectors.toList());
+
                 /*pedido.getItem().stream()
                 .map(i -> i.getIdProduct().equals(productClient.getById(i.getIdProduct())))
                 .collect(Collectors.toList());*/
+
         pedidoRepository.save(pedido);
         return modelMapper.map(pedido, PedidoDtoResponse.class);
 
