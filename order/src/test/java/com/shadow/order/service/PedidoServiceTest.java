@@ -1,22 +1,27 @@
 package com.shadow.order.service;
 
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 import com.shadow.order.advice.exception.OrderException;
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
+import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.repository.ItemRepository;
 import com.shadow.order.repository.PedidoRepository;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,6 +31,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
 @ContextConfiguration(classes = {PedidoService.class, ModelMapper.class})
@@ -57,6 +63,9 @@ public class PedidoServiceTest {
         assertThrows(OrderException.class, () -> this.pedidoService.save(new PedidoDtoRequest()));
         verify(this.modelMapper).map((Object) any(), (Class<Object>) any());
     }
+
+
+
 
 
 
