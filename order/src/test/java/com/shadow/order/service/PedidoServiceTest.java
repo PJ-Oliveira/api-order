@@ -7,7 +7,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.shadow.order.client.OfferClient;
+import com.shadow.order.config.OfferClientConfig;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.exception.ResourceNotFound;
 
@@ -30,7 +30,7 @@ public class PedidoServiceTest {
     private ModelMapper modelMapper;
 
     @Mock
-    private OfferClient offerClient;
+    private OfferClientConfig offerClient;
 
     @InjectMocks
     private PedidoService pedidoService;

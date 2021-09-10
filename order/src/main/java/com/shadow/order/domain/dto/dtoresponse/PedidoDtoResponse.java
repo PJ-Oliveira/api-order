@@ -15,7 +15,7 @@ public class PedidoDtoResponse {
 
     private Long idPedido;
     private List<Item> item;
-    private BigDecimal total;
+    private BigDecimal totalPedido;
 
 
 

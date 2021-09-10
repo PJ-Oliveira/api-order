@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,12 +26,9 @@ public class Pedido {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PEDIDO_ID")
     private Long idPedido;
     @OneToMany(cascade = CascadeType.REMOVE)
-    @Column(name = "ITEM")
     private List<Item> item;
-    @Column(name = "TOTAL")
-    private BigDecimal total;
+    private BigDecimal totalPedido;
 
 }

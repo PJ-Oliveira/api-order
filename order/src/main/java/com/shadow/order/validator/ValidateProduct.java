@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shadow.order.client.ProductClient;
+import com.shadow.order.config.ProductClientConfig;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.InvalidOrderException;
@@ -15,12 +15,12 @@ import com.shadow.order.exception.InvalidOrderException;
 public class ValidateProduct implements Validator<Pedido>  {
 	
 	@Autowired
-	private  ProductClient productClient;
+	private  ProductClientConfig productClient;
 		
 
 
 		@Override
-		public void validator(Pedido pedido) throws InvalidOrderException {
+		public void validator(Pedido pedido) {
 			
 			List<Item> itens = new ArrayList<>();
 			itens = pedido.getItem();

@@ -16,7 +16,7 @@ public class ItemDtoResponse {
     private Long idOffer;
     private BigDecimal desconto;
     private Long idProduct;
-    private String nome;
+    private String nomeProduct;
     private BigDecimal totalItens;
-    private BigDecimal preco;
+    private BigDecimal precoProduct;
 }
