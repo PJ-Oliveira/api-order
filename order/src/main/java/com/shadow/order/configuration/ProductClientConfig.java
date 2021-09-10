@@ -1,4 +1,4 @@
-package com.shadow.order.config;
+package com.shadow.order.configuration;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;

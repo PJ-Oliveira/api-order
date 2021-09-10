@@ -1,4 +1,4 @@
-package com.shadow.order.config;
+package com.shadow.order.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;

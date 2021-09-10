@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shadow.order.config.ProductClientConfig;
+import com.shadow.order.configuration.ProductClientConfig;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.InvalidOrderException;

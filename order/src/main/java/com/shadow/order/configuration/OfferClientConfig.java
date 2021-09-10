@@ -1,4 +1,4 @@
-package com.shadow.order.config;
+package com.shadow.order.configuration;
 
 import com.shadow.order.domain.models.Offer;
 import org.springframework.cloud.openfeign.FeignClient;
