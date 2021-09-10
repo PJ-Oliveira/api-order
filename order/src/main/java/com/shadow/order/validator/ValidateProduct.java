@@ -16,6 +16,8 @@ public class ValidateProduct implements Validator<Pedido>  {
 	
 	@Autowired
 	private  ProductClientConfig productClient;
+	
+	 
 		
 
 
