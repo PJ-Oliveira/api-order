@@ -1,15 +1,15 @@
 package com.shadow.order.domain.dto.dtoresponse;
 
 
-
-import lombok.*;
 import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class ItemDtoResponse {
 
     private Long idItem;
