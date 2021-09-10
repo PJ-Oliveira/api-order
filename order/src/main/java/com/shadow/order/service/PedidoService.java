@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
+import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.repository.PedidoRepository;
-import com.shadow.order.validator.ValidateProduct;
+import com.shadow.order.validator.Validate;
 
 @Service
 public class PedidoService {
@@ -23,7 +24,7 @@ public class PedidoService {
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
-	private ValidateProduct validateProduct;
+	private Validate validateProduct;
 	
 	
 	
@@ -38,10 +39,36 @@ public class PedidoService {
 
 	public List<PedidoDtoResponse> getAll() {
 		List<Pedido> pedido = pedidoRepository.findAll();
-		return pedido.stream().map(p -> modelMapper.map(p, PedidoDtoResponse.class)).collect(Collectors.toList());
+		return pedido.stream()
+				.map(p -> modelMapper
+						.map(p, PedidoDtoResponse.class))
+				.collect(Collectors.toList());
 
 	}
 	
+	public PedidoDtoResponse findById(Long id) {
+		Pedido pedido = pedidoRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Resource not found " + id ));
+		return modelMapper.map(pedido, PedidoDtoResponse.class);
+	}
+	
+	@Transactional
+	public PedidoDtoResponse update(Long id, PedidoDtoRequest pedidoRequest) {
+		Pedido pedido = pedidoRepository.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("Resource not found: "+ id));
+		pedido.setItem(pedidoRequest.getItem());
+		this.pedidoRepository.save(pedido);
+		return modelMapper.map(pedido, PedidoDtoResponse.class);
+		
+	}
+	
+	
+	@Transactional
+	public void delete(Long id) {
+		Pedido pedido = pedidoRepository.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("Resource not found: "+id));
+		this.pedidoRepository.delete(pedido);
+	}
 	
 	
 
