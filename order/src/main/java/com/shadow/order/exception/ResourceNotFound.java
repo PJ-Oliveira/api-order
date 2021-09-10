@@ -1,9 +1,9 @@
 package com.shadow.order.exception;
 
-public class OrderException extends RuntimeException{
+public class ResourceNotFound extends RuntimeException{
     private static final long serialVersionUID = 1L;
 
-    public OrderException(Object id){
+    public ResourceNotFound(Object id){
         super("Resource with id: " + id + "not found");
     }
 }

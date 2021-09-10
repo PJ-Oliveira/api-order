@@ -9,7 +9,7 @@ import static org.mockito.Mockito.when;
 
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
-import com.shadow.order.exception.OrderException;
+import com.shadow.order.exception.ResourceNotFound;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

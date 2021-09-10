@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.exception.OrderInValidException;
+import com.shadow.order.exception.InvalidOrderException;
 
 @Service
 public class ValidateProduct implements Validator<Pedido>  {
@@ -20,7 +20,7 @@ public class ValidateProduct implements Validator<Pedido>  {
 
 
 		@Override
-		public void validator(Pedido pedido) throws OrderInValidException {
+		public void validator(Pedido pedido) throws InvalidOrderException {
 			
 			List<Item> itens = new ArrayList<>();
 			itens = pedido.getItem();
@@ -28,7 +28,7 @@ public class ValidateProduct implements Validator<Pedido>  {
 				try {
 					productClient.getById(item.getIdProduct());
 				} catch (RuntimeException e) {
-					throw new OrderInValidException("Pedido Inválido");
+					throw new InvalidOrderException("Pedido Inválido");
 				}
 			}
 			
