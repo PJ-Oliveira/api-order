@@ -1,6 +1,7 @@
 package com.shadow.order.advice;
 
 import com.shadow.order.advice.exception.OrderException;
+import org.hibernate.criterion.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import javax.validation.ConstraintViolationException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +20,10 @@ public class OrderControllerAdvice
         extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
-            (value = { IllegalArgumentException.class, IllegalStateException.class, OrderException.class})
+            (value = { IllegalArgumentException.class, IllegalStateException.class, OrderException.class, InvocationTargetException.class})
     protected ResponseEntity<Object> handleConflict(
-            RuntimeException runtimeException, WebRequest request) {
-        return handleExceptionInternal(runtimeException, "Id Offer or Id Product invalid",
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-    @ExceptionHandler(javax.validation.ConstraintViolationException.class)
-    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException constraintViolationException){
-        List<String> errors = new ArrayList<>(constraintViolationException.getConstraintViolations().size());
-        constraintViolationException.getConstraintViolations().forEach(constraintViolation -> {
-            errors.add(constraintViolation.getPropertyPath() + " : " + constraintViolation.getMessage());
-        });
-        return new ResponseEntity<>(errors, HttpStatus.BAD_GATEWAY);
+            OrderException orderException, WebRequest request) {
+        return handleExceptionInternal(orderException, "Order invalid due to Offer or Product Exception",
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

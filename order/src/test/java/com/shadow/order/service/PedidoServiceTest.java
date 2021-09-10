@@ -57,12 +57,12 @@ public class PedidoServiceTest {
     @InjectMocks
     private PedidoService pedidoService;
 
-    @Test
+    /*@Test
     public void testSave() {
         when(this.modelMapper.map((Object) any(), (Class<Object>) any())).thenThrow(new OrderException());
         assertThrows(OrderException.class, () -> this.pedidoService.save(new PedidoDtoRequest()));
         verify(this.modelMapper).map((Object) any(), (Class<Object>) any());
-    }
+    }*/
 
 
 

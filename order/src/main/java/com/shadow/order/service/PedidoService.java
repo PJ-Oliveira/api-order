@@ -1,6 +1,7 @@
 package com.shadow.order.service;
 import com.shadow.order.advice.OrderControllerAdvice;
 import com.shadow.order.repository.ItemRepository;
+import com.shadow.order.validation.OrderValidation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,25 +32,21 @@ public class PedidoService {
     private ModelMapper modelMapper;
     @Autowired
     private ProductClient productClient;
+    @Autowired
+    private OrderValidation orderValidation;
+
     
 
-    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
-            Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-            pedido.getItem().stream()
-                    .map(i -> i.getIdOffer()
-                            .equals(offerClient.findOneOffer(i.getIdOffer())))
-                    .collect(Collectors.toList());
-                /*pedido.getItem().stream()
-                .map(i -> i.getIdProduct().equals(productClient.getById(i.getIdProduct())))
-                .collect(Collectors.toList());*/
-            pedidoRepository.save(pedido);
-            return modelMapper.map(pedido, PedidoDtoResponse.class);
-
+    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest) throws OrderException{
+        Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+        orderValidation.validate(pedido);
+        pedidoRepository.save(pedido);
+        return orderValidation.validate(pedido);
     }
 
     public PedidoDtoResponse getById(Long id){
         Pedido pedido = pedidoRepository.findById(id)
-                .orElseThrow(()-> new OrderException("Resource with id: " + id + "not found"));
+                .orElseThrow(()-> new OrderException());
         return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
 }
