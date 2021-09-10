@@ -50,11 +50,9 @@ public class PedidoController {
     })
     public ResponseEntity<?> create(@Valid @RequestBody PedidoDtoRequest pedidoDtoRequest){
         PedidoDtoResponse pedidoDtoResponse = pedidoService.save(pedidoDtoRequest);
-        if(pedidoDtoResponse != null) {
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
                     .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
             return ResponseEntity.created(uri).body(pedidoDtoResponse);
-        } return ResponseEntity.ok().body("Offer Id or Product id invalid or expired");
     }
 
     @GetMapping("{id}")

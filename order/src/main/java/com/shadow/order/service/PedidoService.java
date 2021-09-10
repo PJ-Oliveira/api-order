@@ -37,7 +37,7 @@ public class PedidoService {
 
     
 
-    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest) throws OrderException{
+    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest) {
         Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
         orderValidation.validate(pedido);
         pedidoRepository.save(pedido);
