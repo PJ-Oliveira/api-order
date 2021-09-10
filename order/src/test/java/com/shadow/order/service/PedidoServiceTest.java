@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import com.shadow.order.advice.exception.OrderException;
+
 import com.shadow.order.client.OfferClient;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
+import com.shadow.order.exception.OrderException;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

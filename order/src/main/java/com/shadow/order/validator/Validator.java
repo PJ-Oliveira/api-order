@@ -1,6 +1,6 @@
 package com.shadow.order.validator;
 
-import com.shadow.order.advice.exception.OrderInValidException;
+import com.shadow.order.exception.OrderInValidException;
 
 public interface Validator <T> {
 	

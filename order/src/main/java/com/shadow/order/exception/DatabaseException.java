@@ -1,4 +1,4 @@
-package com.shadow.order.advice.exception;
+package com.shadow.order.exception;
 
 public class DatabaseException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

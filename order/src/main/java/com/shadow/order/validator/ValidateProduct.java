@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shadow.order.advice.exception.OrderInValidException;
 import com.shadow.order.client.ProductClient;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
+import com.shadow.order.exception.OrderInValidException;
 
 @Service
 public class ValidateProduct implements Validator<Pedido>  {

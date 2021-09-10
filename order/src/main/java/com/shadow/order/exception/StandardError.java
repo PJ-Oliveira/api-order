@@ -1,4 +1,4 @@
-package com.shadow.order.advice.exception;
+package com.shadow.order.exception;
 
 import java.time.Instant;
 
