@@ -16,9 +16,7 @@ public class Validate implements Validator<Pedido>  {
 	
 	@Autowired
 	private  ProductClientConfig productClient;
-	
 
-	 
 		@Override
 		public void validator(Pedido pedido) {
 			

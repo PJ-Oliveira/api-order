@@ -11,7 +11,6 @@ import com.shadow.order.domain.models.Pedido;
 
 @Service
 public class CalcularPedido {
-
 	
 	public void somarPedido(Pedido pedido) {
 		var valorTotalPedido = BigDecimal.ZERO.setScale(2,RoundingMode.HALF_UP);
@@ -24,11 +23,6 @@ public class CalcularPedido {
 			item.setValorTotalItem(valorTotalItem);
 			pedido.setTotalPedido(valorTotalPedido);
 		}
-		
 	}
-	
 
-	
-	
-	
 }
