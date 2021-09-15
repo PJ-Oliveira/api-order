@@ -14,6 +14,7 @@ import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.repository.PedidoRepository;
+import com.shadow.order.util.CalcularPedido;
 import com.shadow.order.validator.Validate;
 
 @Service
@@ -25,6 +26,9 @@ public class PedidoService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private Validate validateProduct;
+	@Autowired
+	private CalcularPedido calcularPedido;
+	
 	
 	
 	
@@ -33,6 +37,7 @@ public class PedidoService {
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
 		validateProduct.validator(pedido);
+		calcularPedido.somarPedido(pedido);
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
@@ -52,15 +57,7 @@ public class PedidoService {
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
 	
-	@Transactional
-	public PedidoDtoResponse update(Long id, PedidoDtoRequest pedidoRequest) {
-		Pedido pedido = pedidoRepository.findById(id)
-				.orElseThrow(()-> new ResourceNotFoundException("Resource not found: "+ id));
-		pedido.setItem(pedidoRequest.getItem());
-		this.pedidoRepository.save(pedido);
-		return modelMapper.map(pedido, PedidoDtoResponse.class);
-		
-	}
+	
 	
 	
 	@Transactional

@@ -17,9 +17,10 @@ public class SwaggerConfig {
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+        		.useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.shadow.order"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/**"))
                 .build()
                 .apiInfo(metaInfo());
     }

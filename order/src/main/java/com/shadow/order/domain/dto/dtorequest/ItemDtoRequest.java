@@ -36,9 +36,7 @@ public class ItemDtoRequest {
 	@NotNull(message = "${field.item.precoProduct.not.null}")
 	private BigDecimal precoProduct;
 	
-	@ApiModelProperty(value = "Valor total do item com desconto da oferta", example = "18,01", required=true)
-	@NotNull(message="${field.item.totalItem.not.null}")
-    private BigDecimal totalItens;
+
     
 
 }

@@ -32,6 +32,6 @@ public class ItemDtoResponse {
 	private BigDecimal precoProduct;
 	
 	@ApiModelProperty(value = "Retorna o valor total do item com desconto", example="18.01")
-    private BigDecimal totalItens;
+    private BigDecimal valorTotalItem;
     
 }

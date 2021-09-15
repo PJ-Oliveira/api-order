@@ -18,7 +18,7 @@ public class PedidoDtoResponse {
     private Long idPedido;
 	
 	@ApiModelProperty(value = "Retorna lista de Itens referente ao pedido cadastrado")
-    private List<Item> item;
+    private List<ItemDtoResponse> item;
 	
 	@ApiModelProperty(value = "Retorna o valor total do pedido", example = "50.99")
     private BigDecimal totalPedido;
