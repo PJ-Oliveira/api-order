@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.shadow.order.domain.models.Product;
 
 @FeignClient(value = "${feign.product.name}", url = "${feign.product.url}")
-public interface ProductClient {
+public interface ProductClientConfig {
    
     
    @RequestMapping(method = RequestMethod.GET, value = "/{id}", consumes ="application/json")

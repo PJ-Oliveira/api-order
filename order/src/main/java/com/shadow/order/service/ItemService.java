@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.shadow.order.domain.dto.dtorequest.ItemDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.ItemDtoResponse;
 import com.shadow.order.domain.models.Item;
-import com.shadow.order.repository.ItemRepository;
 
 @Service
 public class ItemService {

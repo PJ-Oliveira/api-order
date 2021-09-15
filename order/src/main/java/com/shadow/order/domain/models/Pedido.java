@@ -29,10 +29,10 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PEDIDO_ID")
     private Long idPedido;
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @Column(name = "ITEM")
     private List<Item> item;
     @Column(name = "TOTAL")
-    private BigDecimal total;
+    private BigDecimal totalPedido;
 
 }

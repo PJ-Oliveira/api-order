@@ -1,4 +1,4 @@
-package com.shadow.order.config;
+package com.shadow.order.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.shadow.order"))
-                .paths(PathSelectors.any())
+				.paths(PathSelectors.ant("/**"))
                 .build()
                 .apiInfo(metaInfo());
     }

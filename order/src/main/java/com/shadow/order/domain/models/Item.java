@@ -39,6 +39,6 @@ public class Item {
     @Column(name = "totalItens")
     private BigDecimal totalItens;
     @Column(name = "PRECO")
-    private BigDecimal preco;
+    private BigDecimal precoProduct;
     
 }

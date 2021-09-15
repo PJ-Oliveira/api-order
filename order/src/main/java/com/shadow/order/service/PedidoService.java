@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import com.shadow.order.validation.OrderValidation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.repository.PedidoRepository;
-import com.shadow.order.validator.ValidateProduct;
 
 @Service
 public class PedidoService {
@@ -23,7 +23,7 @@ public class PedidoService {
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
-	private ValidateProduct validateProduct;
+	private OrderValidation orderValidation;
 	
 	
 	
@@ -31,7 +31,7 @@ public class PedidoService {
 	@Transactional
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-		validateProduct.validator(pedido);
+		orderValidation.validator(pedido);
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
