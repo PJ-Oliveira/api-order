@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import com.shadow.order.validator.ValidateOffer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +29,14 @@ public class PedidoService {
 	private Validate validateProduct;
 	@Autowired
 	private CalcularPedido calcularPedido;
-	
-	
-	
+	@Autowired
+	private ValidateOffer validateOffer;
 	
 
 	@Transactional
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-		validateProduct.validator(pedido);
+		validateOffer.validade(pedido);
 		calcularPedido.somarPedido(pedido);
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
