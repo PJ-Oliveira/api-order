@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.shadow.order.domain.models.Offer;
 
 
+
 @FeignClient(value = "${feign.offer.name}", url = "${feign.offer.url}")
 public interface OfferClientConfig {
 
