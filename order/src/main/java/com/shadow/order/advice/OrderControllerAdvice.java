@@ -23,7 +23,7 @@ public class OrderControllerAdvice
             (value = { IllegalArgumentException.class, IllegalStateException.class})
     protected ResponseEntity<Object> handleConflict(
             RuntimeException runtimeException, WebRequest request) {
-        return handleExceptionInternal(runtimeException, null,
+        return handleExceptionInternal(runtimeException, "Id Offer or Id Product invalid",
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
     @ExceptionHandler(javax.validation.ConstraintViolationException.class)

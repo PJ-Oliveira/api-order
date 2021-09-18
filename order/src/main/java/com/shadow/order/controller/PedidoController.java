@@ -49,6 +49,7 @@ public class PedidoController {
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
                     .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
             return ResponseEntity.created(uri).body(pedidoDtoResponse);
+<<<<<<< HEAD
         } return ResponseEntity.ok().body("Offer Id ou Product id invalid");
 
     }
@@ -76,6 +77,9 @@ public class PedidoController {
     public ResponseEntity<?> delete(@PathVariable Long id){
     	this.pedidoService.delete(id);
     	return ResponseEntity.badRequest().build();
+=======
+        } return ResponseEntity.ok().body("Offer Id or Product id invalid or expired");
+>>>>>>> 9ad3c50 (Atualizações)
     }
     
 
@@ -91,7 +95,7 @@ public class PedidoController {
         PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
         if(pedidoDtoResponse != null) {
             return ResponseEntity.ok().body(pedidoDtoResponse);
-        } return ResponseEntity.ok().body("Offer Id ou Product id invalid");
+        } return ResponseEntity.ok().body("Offer Id ou Product id invalid or expired");
     }
 
 

@@ -1,4 +1,5 @@
 package com.shadow.order.service;
+<<<<<<< HEAD
 
 
 import java.util.List;
@@ -6,8 +7,14 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+=======
+import com.shadow.order.advice.OrderControllerAdvice;
+import com.shadow.order.repository.ItemRepository;
+>>>>>>> 9ad3c50 (Atualizações)
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
@@ -27,6 +34,32 @@ import com.shadow.order.validator.Validate;
 @Service
 public class PedidoService {
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private OfferClient offerClient;
+    @Autowired
+    private PedidoRepository pedidoRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private ModelMapper modelMapper;
+    @Autowired
+    private ProductClient productClient;
+    
+
+    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
+            Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+            pedido.getItem().stream()
+                    .map(i -> i.getIdOffer()
+                            .equals(offerClient.findOneOffer(i.getIdOffer())))
+                    .collect(Collectors.toList());
+                /*pedido.getItem().stream()
+                .map(i -> i.getIdProduct().equals(productClient.getById(i.getIdProduct())))
+                .collect(Collectors.toList());*/
+            pedidoRepository.save(pedido);
+            return modelMapper.map(pedido, PedidoDtoResponse.class);
+>>>>>>> 9ad3c50 (Atualizações)
 
 
 	@Autowired
