@@ -10,7 +10,11 @@ import javax.transaction.Transactional;
 =======
 import com.shadow.order.advice.OrderControllerAdvice;
 import com.shadow.order.repository.ItemRepository;
+<<<<<<< HEAD
 >>>>>>> 9ad3c50 (Atualizações)
+=======
+import com.shadow.order.validation.OrderValidation;
+>>>>>>> 1be24e5 (Validação do Pedido pelo IdOffer)
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,8 +50,10 @@ public class PedidoService {
     private ModelMapper modelMapper;
     @Autowired
     private ProductClient productClient;
-    
+    @Autowired
+    private OrderValidation orderValidation;
 
+<<<<<<< HEAD
     public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
             Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
             pedido.getItem().stream()
@@ -61,6 +67,16 @@ public class PedidoService {
             return modelMapper.map(pedido, PedidoDtoResponse.class);
 >>>>>>> 9ad3c50 (Atualizações)
 
+=======
+    
+
+    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest) throws OrderException{
+        Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+        orderValidation.validate(pedido);
+        pedidoRepository.save(pedido);
+        return orderValidation.validate(pedido);
+    }
+>>>>>>> 1be24e5 (Validação do Pedido pelo IdOffer)
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
@@ -84,7 +100,11 @@ public class PedidoService {
    
     public PedidoDtoResponse getById(Long id){
         Pedido pedido = pedidoRepository.findById(id)
+<<<<<<< HEAD
                 .orElseThrow(()-> new InvalidOrderException("Resource with id: " + id + "not found"));
+=======
+                .orElseThrow(()-> new OrderException());
+>>>>>>> 1be24e5 (Validação do Pedido pelo IdOffer)
         return modelMapper.map(pedido, PedidoDtoResponse.class);
     }
 
