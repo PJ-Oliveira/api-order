@@ -13,6 +13,8 @@ import com.shadow.order.domain.models.Pedido;
 public class CalcularPedido {
 	
 	public void calcularPedido(Pedido pedido) {
+
+	
 		var valorTotalPedido = BigDecimal.ZERO.setScale(2,RoundingMode.HALF_UP);
 		List<Item> itens = pedido.getItem();
 		for (Item item : itens) {
