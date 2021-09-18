@@ -1,6 +1,5 @@
 package com.shadow.order.domain.dto.dtorequest;
 
-
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
@@ -9,7 +8,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 
 @Data
@@ -22,4 +20,5 @@ public class PedidoDtoRequest {
 	private List<ItemDtoRequest> item;
 	
 	
+
 }

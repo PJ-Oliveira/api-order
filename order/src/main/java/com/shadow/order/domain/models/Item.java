@@ -32,6 +32,7 @@ public class Item {
     private BigDecimal desconto;
    
     private Long idProduct;
+
     
     private String nomeProduct;
     

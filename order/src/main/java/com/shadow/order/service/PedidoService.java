@@ -21,7 +21,6 @@ import com.shadow.order.validation.OrderValidation;
 
 
 
-
 @Service
 public class PedidoService {
 
@@ -34,24 +33,14 @@ public class PedidoService {
     private OrderValidation orderValidation;
 
 
-    
 
-    public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest) {
-        Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-        orderValidation.validate(pedido);
-        pedidoRepository.save(pedido);
-        return orderValidation.validate(pedido);
-    }
-
-
-
-   
-    public PedidoDtoResponse getById(Long id){
-        Pedido pedido = pedidoRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Resource with id: " + id + "not found"));
-        return modelMapper.map(pedido, PedidoDtoResponse.class);
-    }
-
+	@Transactional
+	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
+		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
+		orderValidation.validator(pedido);
+		pedidoRepository.save(pedido);
+		return modelMapper.map(pedido, PedidoDtoResponse.class);
+	}
 
 	public List<PedidoDtoResponse> getAll() {
 		List<Pedido> pedido = pedidoRepository.findAll();

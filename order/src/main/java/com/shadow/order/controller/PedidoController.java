@@ -1,6 +1,7 @@
 package com.shadow.order.controller;
 
 
+
 import java.net.URI;
 import java.util.List;
 
@@ -35,7 +36,6 @@ public class PedidoController {
 	
     @Autowired
     private  PedidoService pedidoService;
-
 
     @PostMapping
     @ApiOperation(value = "Realiza cadastro de pedidos")
@@ -86,7 +86,7 @@ public class PedidoController {
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
     public ResponseEntity<?> findOnePedido(@Valid @PathVariable long id){
-        PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
+        PedidoDtoResponse pedidoDtoResponse = pedidoService.findById(id);
         if(pedidoDtoResponse != null) {
             return ResponseEntity.ok().body(pedidoDtoResponse);
         } return ResponseEntity.ok().body("Offer Id ou Product id invalid or expired");
