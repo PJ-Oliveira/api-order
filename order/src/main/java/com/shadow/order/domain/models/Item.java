@@ -12,15 +12,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-<<<<<<< HEAD
 
-=======
-
-
-import javax.persistence.*;
-import java.math.BigDecimal;
-
->>>>>>> 88f3b1c (Atualizações de Exceções)
 
 
 @NoArgsConstructor
@@ -36,11 +28,7 @@ public class Item {
     private Long idItem;
     
     private Long idOffer;
-<<<<<<< HEAD
 
-=======
-    @Column(name = "DESCONTO")
->>>>>>> 88f3b1c (Atualizações de Exceções)
     private BigDecimal desconto;
    
     private Long idProduct;

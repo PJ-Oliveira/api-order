@@ -1,18 +1,11 @@
 package com.shadow.order.domain.dto.dtoresponse;
 
-
-<<<<<<< HEAD
 import java.math.BigDecimal;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-=======
-
-import lombok.*;
-import java.math.BigDecimal;
->>>>>>> 88f3b1c (Atualizações de Exceções)
 
 @NoArgsConstructor
 @Getter

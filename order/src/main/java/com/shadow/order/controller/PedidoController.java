@@ -41,13 +41,16 @@ public class PedidoController {
     @ApiOperation(value = "Realiza cadastro de pedidos")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
-            @ApiResponse(code = 404, message = "Recurso não encontrado"),
-            @ApiResponse(code = 500, message = "Sistema Indisponível")})
-    public ResponseEntity<PedidoDtoResponse> create(@Valid @RequestBody PedidoDtoRequest pedidoDtoRequest){
-    	PedidoDtoResponse pedidoDtoResponse = pedidoService.save(pedidoDtoRequest);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-                .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
-        return ResponseEntity.created(uri).body(pedidoDtoResponse);
+            @ApiResponse(code = 404, message = "Recurso não encontrado")})
+
+    public ResponseEntity<?> create(@Valid @RequestBody PedidoDtoRequest pedidoDtoRequest){
+        PedidoDtoResponse pedidoDtoResponse = pedidoService.save(pedidoDtoRequest);
+        if(pedidoDtoResponse != null) {
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
+                    .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
+            return ResponseEntity.created(uri).body(pedidoDtoResponse);
+        } return ResponseEntity.ok().body("Offer Id ou Product id invalid");
+
     }
     
     @GetMapping
@@ -84,7 +87,7 @@ public class PedidoController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<?> findOneOffer(@Valid @PathVariable long id){
+    public ResponseEntity<?> findOnePedido(@Valid @PathVariable long id){
         PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
         if(pedidoDtoResponse != null) {
             return ResponseEntity.ok().body(pedidoDtoResponse);

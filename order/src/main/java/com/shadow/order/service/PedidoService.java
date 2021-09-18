@@ -28,6 +28,7 @@ import com.shadow.order.validator.Validate;
 public class PedidoService {
 
 
+
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	@Autowired
@@ -37,10 +38,6 @@ public class PedidoService {
 	@Autowired
 	private CalcularPedido calcularPedido;
 	
-	
-	
-	
-
 
 	@Transactional
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
