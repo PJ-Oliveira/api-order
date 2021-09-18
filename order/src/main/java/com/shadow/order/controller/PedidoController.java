@@ -1,5 +1,6 @@
 package com.shadow.order.controller;
 
+
 import java.net.URI;
 import java.util.List;
 
@@ -83,10 +84,12 @@ public class PedidoController {
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })
-    public ResponseEntity<PedidoDtoResponse> findOneOffer(@Valid @PathVariable long id){
+    public ResponseEntity<?> findOneOffer(@Valid @PathVariable long id){
         PedidoDtoResponse pedidoDtoResponse = pedidoService.getById(id);
-        return ResponseEntity.ok().body(pedidoDtoResponse);
+        if(pedidoDtoResponse != null) {
+            return ResponseEntity.ok().body(pedidoDtoResponse);
+        } return ResponseEntity.ok().body("Offer Id ou Product id invalid");
     }
 
-    
+
 }

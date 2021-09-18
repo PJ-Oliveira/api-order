@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -19,9 +21,11 @@ public class ItemDtoRequest {
 	@NotNull(message = "${field.item.idOffer.not.null}")
     private Long idOffer;
 
+
 	
 	@ApiModelProperty(value = "Valor do desconto referente a oferta informada", example = "2.99", required = true)
 	@NotNull(message = "${field.item.desconto.not.empty}")
+
     private BigDecimal desconto;
 	
 	@ApiModelProperty(value="Id de um produto a ser adicionado", example="1", required=true)

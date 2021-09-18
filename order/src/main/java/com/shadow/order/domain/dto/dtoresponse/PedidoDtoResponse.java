@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.shadow.order.domain.models.Item;
+<<<<<<< HEAD
 
 import io.swagger.annotations.ApiModelProperty;
+=======
+>>>>>>> 88f3b1c (Atualizações de Exceções)
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,8 +16,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class PedidoDtoResponse {
 
+<<<<<<< HEAD
 
 	@ApiModelProperty(value = "Retorna id do pedido cadastrado", example="1")
+=======
+>>>>>>> 88f3b1c (Atualizações de Exceções)
     private Long idPedido;
 	
 	@ApiModelProperty(value = "Retorna lista de Itens referente ao pedido cadastrado")
