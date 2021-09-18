@@ -21,8 +21,8 @@ import com.shadow.order.exception.StandardError;
 		
 		@ExceptionHandler(InvalidOrderException.class)
 		public ResponseEntity<StandardError> resourceNotFound(InvalidOrderException e, HttpServletRequest request){
-			String error = "Bad Request";
-			HttpStatus status = HttpStatus.BAD_REQUEST;
+			String error = "Not Found";
+			HttpStatus status = HttpStatus.NOT_FOUND;
 			StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 			return ResponseEntity.status(status).body(err);
 		}

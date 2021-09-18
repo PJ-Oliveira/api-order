@@ -35,8 +35,5 @@ public class Item {
     
     private BigDecimal precoProduct;
     
-    private BigDecimal valorTotalItem;
-    
-    
-    
+    private BigDecimal valorTotalItem; 
 }

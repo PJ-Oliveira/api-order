@@ -17,6 +17,10 @@ import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.util.CalcularPedido;
 import com.shadow.order.validator.Validate;
 
+
+
+
+
 @Service
 public class PedidoService {
 
@@ -37,7 +41,7 @@ public class PedidoService {
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
 		validateProduct.validator(pedido);
-		calcularPedido.somarPedido(pedido);
+		calcularPedido.calcularPedido(pedido);
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
@@ -56,9 +60,6 @@ public class PedidoService {
 				.orElseThrow(() -> new ResourceNotFoundException("Resource not found " + id ));
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
-	
-	
-	
 	
 	@Transactional
 	public void delete(Long id) {

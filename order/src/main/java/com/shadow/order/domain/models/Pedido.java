@@ -27,8 +27,10 @@ public class Pedido {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
+	
     @OneToMany(cascade =  CascadeType.ALL)
     private List<Item> item;
+    
     private BigDecimal totalPedido;
 
 }

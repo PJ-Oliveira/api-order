@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+
+
 import org.springframework.stereotype.Service;
 
 import com.shadow.order.domain.models.Item;
@@ -13,21 +15,20 @@ import com.shadow.order.domain.models.Pedido;
 public class CalcularPedido {
 
 	
-	public void somarPedido(Pedido pedido) {
+	public void calcularPedido(Pedido pedido) {
 		var valorTotalPedido = BigDecimal.ZERO.setScale(2,RoundingMode.HALF_UP);
-		var valorTotalItem = BigDecimal.ZERO.setScale(2,RoundingMode.HALF_UP);
 		List<Item> itens = pedido.getItem();
 		for (Item item : itens) {
-			valorTotalItem = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
-			valorTotalPedido =valorTotalPedido.add(item.getPrecoProduct().subtract(item.getDesconto()));
+			var valorTotalItem = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
 			valorTotalItem = valorTotalItem.add(item.getPrecoProduct().subtract(item.getDesconto()));
-			item.setValorTotalItem(valorTotalItem);
+			valorTotalPedido =valorTotalPedido.add(valorTotalItem);
+	
+			item.setValorTotalItem(valorTotalItem); 
 			pedido.setTotalPedido(valorTotalPedido);
 		}
 		
 	}
 	
-
 	
 	
 	
