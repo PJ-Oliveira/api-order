@@ -1,5 +1,6 @@
 package com.shadow.order.service;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
+import com.shadow.order.exception.InvalidOrderException;
 import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.util.CalcularPedido;
@@ -37,6 +39,7 @@ public class PedidoService {
 	
 	
 
+
 	@Transactional
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
@@ -45,6 +48,14 @@ public class PedidoService {
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
+
+    public PedidoDtoResponse getById(Long id){
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(()-> new InvalidOrderException("Resource with id: " + id + "not found"));
+        return modelMapper.map(pedido, PedidoDtoResponse.class);
+    }
+
+
 
 	public List<PedidoDtoResponse> getAll() {
 		List<Pedido> pedido = pedidoRepository.findAll();

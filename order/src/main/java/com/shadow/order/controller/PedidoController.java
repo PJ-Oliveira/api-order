@@ -40,8 +40,7 @@ public class PedidoController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
-            @ApiResponse(code = 500, message = "Sistema Indisponível")
-    })
+            @ApiResponse(code = 500, message = "Sistema Indisponível")})
     public ResponseEntity<PedidoDtoResponse> create(@Valid @RequestBody PedidoDtoRequest pedidoDtoRequest){
     	PedidoDtoResponse pedidoDtoResponse = pedidoService.save(pedidoDtoRequest);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
@@ -69,7 +68,9 @@ public class PedidoController {
     public ResponseEntity<PedidoDtoResponse> findById(@PathVariable Long id){
     	PedidoDtoResponse pedidoResponse = pedidoService.findById(id);
     	return ResponseEntity.ok(pedidoResponse);
+
     }
+
     
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletar um pedido informando um id válido")
@@ -81,17 +82,5 @@ public class PedidoController {
     	this.pedidoService.delete(id);
     	return ResponseEntity.badRequest().build();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
