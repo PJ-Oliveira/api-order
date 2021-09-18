@@ -1,4 +1,4 @@
-package com.shadow.order.validation;
+package com.shadow.order.validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,19 @@ import com.shadow.order.configuration.OfferClientConfig;
 import com.shadow.order.configuration.ProductClientConfig;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.exception.InvalidOrderExcepetion;
+import com.shadow.order.exception.InvalidOrderException;
 
 @Service
-public class OrderValidation {
-    @Autowired
-    private OfferClientConfig offerClient;
+public class ValidateOrder {
+    
+	@Autowired
     private ProductClientConfig productClientConfig;
     @Autowired
     private OfferClientConfig offerClientConfig;
 
 
 
-    public void validator(Pedido pedido) throws InvalidOrderExcepetion {
+    public void validator(Pedido pedido)  {
 
         List<Item> itens = new ArrayList<>();
         itens = pedido.getItem();
@@ -31,7 +31,7 @@ public class OrderValidation {
                 productClientConfig.getById(item.getIdProduct());
                 offerClientConfig.findOneOffer(item.getIdOffer());
             } catch (RuntimeException runtimeException) {
-                throw new InvalidOrderExcepetion("Pedido Inválido");
+                throw new InvalidOrderException("Pedido Inválido");
             }
         }
 
