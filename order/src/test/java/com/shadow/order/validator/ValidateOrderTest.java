@@ -35,11 +35,11 @@ import com.shadow.order.feature.ScenarioFactory;
 import com.shadow.order.service.PedidoService;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
-public class ValidateTest {
+public class ValidateOrderTest {
 
 	
 	@InjectMocks
-	private Validate validate;
+	private ValidateOrder validate;
 	
 	
 	
@@ -54,9 +54,9 @@ public class ValidateTest {
 		var item = ScenarioFactory.newItem();
 			
 			validate.validator(pedido);	
-			when(productClientConfig.getById(item.getIdProduct())).thenReturn(product);
+			when(productClientConfig.findById(item.getIdProduct())).thenReturn(product);
 
-			verify(productClientConfig, times(1)).getById(product.getId());
+			verify(productClientConfig, times(1)).findById(product.getId());
 		
 			
 	}

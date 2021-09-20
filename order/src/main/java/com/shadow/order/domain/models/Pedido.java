@@ -33,7 +33,7 @@ public class Pedido {
     @OneToMany(cascade =  CascadeType.ALL)
     private List<Item> item;
     
-    @Column(name = "TOTAL")
+    
     private BigDecimal totalPedido;
 
 }

@@ -15,13 +15,13 @@ import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.exception.StandardError;
 
 
-	@ControllerAdvice
-	public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {	
+@ControllerAdvice
+public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {	
 		
 		
 		@ExceptionHandler(InvalidOrderException.class)
-		public ResponseEntity<StandardError> resourceNotFound(InvalidOrderException e, HttpServletRequest request){
-			String error = "Not Found";
+		public ResponseEntity<StandardError> resourceNotFoundProduct(InvalidOrderException e, HttpServletRequest request){
+			String error = "Erro ao tentar salvar o pedido";
 			HttpStatus status = HttpStatus.NOT_FOUND;
 			StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 			return ResponseEntity.status(status).body(err);

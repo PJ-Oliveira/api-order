@@ -6,34 +6,39 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shadow.order.configuration.OfferClientConfig;
 import com.shadow.order.configuration.ProductClientConfig;
 import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.InvalidOrderException;
+import com.shadow.order.util.CalcularPedido;
 
 @Service
-public class ValidateOrder {
-    
+public class ValidateOrder implements Validator<Pedido>  {
+	
 	@Autowired
-    private ProductClientConfig productClientConfig;
-    @Autowired
-    private OfferClientConfig offerClientConfig;
+	private  ProductClientConfig productClient;
+	@Autowired
+	private CalcularPedido calcularPedido;
 
+		@Override
+		public void validator(Pedido pedido){
+			
+			List<Item> itens = new ArrayList<>();
+			itens = pedido.getItem(); 
+			for (Item item : itens) {
+			
 
-
-    public void validator(Pedido pedido)  {
-
-        List<Item> itens = new ArrayList<>();
-        itens = pedido.getItem();
-        for (Item item : itens) {
-            try {
-                productClientConfig.getById(item.getIdProduct());
-                offerClientConfig.findOneOffer(item.getIdOffer());
-            } catch (RuntimeException runtimeException) {
-                throw new InvalidOrderException("Pedido Inválido");
-            }
-        }
-
-    }
+				try {
+					productClient.findById(item.getIdProduct());
+					
+				} catch (RuntimeException e) {
+					throw new InvalidOrderException("Pedido Inválido");
+				}
+		}
+			this.calcularPedido.calcularPedido(pedido);
+	}
+		
+		
+		
+		
 }

@@ -5,6 +5,8 @@ import com.shadow.order.domain.models.Item;
 import com.shadow.order.domain.models.Offer;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.InvalidOrderException;
+import com.shadow.order.exception.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,30 +19,23 @@ public class ValidateOffer {
     @Autowired
     private OfferClientConfig offerClient;
     @Autowired
-    private Validate validateProduct;
+    private ValidateOrder validateOrder;
 
     public void validade(Pedido pedido) {
         List<Item> itemList = pedido.getItem();
         for (Item item : itemList) {
-            if (item.getIdOffer() != 0) {
-                verifyIfOfferExist(pedido);
-            } else if (item.getIdOffer() == 0) {
-                validateProduct.validator(pedido);
-            }
+           
+                verifyIfOfferExist(item.getIdOffer());
+            
         }
+        validateOrder.validator(pedido);
     }
 
-    public void verifyIfOfferExist(Pedido pedido) {
-        List<Item> itemList = pedido.getItem();
-        for (Item item : itemList) {
-            if (item.getIdOffer() != null) {
-                Optional<Offer> oneOffer = offerClient.findOneOffer(item.getIdOffer());
-                if (oneOffer.isPresent()) {
-                    validateProduct.validator(pedido);
-                } else {
-                    throw new InvalidOrderException("TESTE");
-                }
+    private void verifyIfOfferExist(Long id) {
+            offerClient.findOneOffer(id);
+            
+            		 
             }
-        }
+        
     }
-}
+

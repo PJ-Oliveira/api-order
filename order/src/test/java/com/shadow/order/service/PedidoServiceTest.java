@@ -24,7 +24,7 @@ import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.feature.ScenarioFactory;
 import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.util.CalcularPedido;
-import com.shadow.order.validator.Validate;
+import com.shadow.order.validator.ValidateOffer;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class PedidoServiceTest {
@@ -37,7 +37,7 @@ public class PedidoServiceTest {
 	@Mock
 	private ModelMapper modelMapper;
 	@Mock
-	private Validate validator;
+	private ValidateOffer validator;
 	@Mock
 	private CalcularPedido calcular;
 	
@@ -105,7 +105,7 @@ public class PedidoServiceTest {
 		var pedidoRequest = ScenarioFactory.newPedidoRequest();
 		
 		given(pedidoRepository.save(pedido)).willReturn(pedido);
-			validator.validator(pedido);
+			validator.validade(pedido);
 			calcular.calcularPedido(pedido);
 			when(pedidoService.save(pedidoRequest)).thenReturn(pedidoResponse);
 			
