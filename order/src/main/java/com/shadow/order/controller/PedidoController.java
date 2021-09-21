@@ -18,9 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
-import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.repository.ItemRepository;
-import com.shadow.order.repository.PedidoRepository;
 import com.shadow.order.service.PedidoService;
 
 import io.swagger.annotations.ApiOperation;

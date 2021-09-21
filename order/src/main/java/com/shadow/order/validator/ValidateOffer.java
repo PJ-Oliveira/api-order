@@ -19,14 +19,13 @@ public class ValidateOffer {
     @Autowired
     private Validate validateProduct;
 
-    public void validade(Pedido pedido) {
+    public void validate(Pedido pedido) {
         List<Item> itemList = pedido.getItem();
         for (Item item : itemList) {
-            if (item.getIdOffer() != 0) {
+            if (item.getIdOffer() != null) {
                 verifyIfOfferExist(pedido);
-            } else if (item.getIdOffer() == 0) {
-                validateProduct.validator(pedido);
             }
+            validateProduct.validator(pedido);
         }
     }
 
@@ -34,11 +33,12 @@ public class ValidateOffer {
         List<Item> itemList = pedido.getItem();
         for (Item item : itemList) {
             if (item.getIdOffer() != null) {
-                Optional<Offer> oneOffer = offerClient.findOneOffer(item.getIdOffer());
+                Optional<Offer> oneOffer = offerClient.verifyIfOfferExist(item.getIdOffer());
                 if (oneOffer.isPresent()) {
                     validateProduct.validator(pedido);
-                } else {
-                    throw new InvalidOrderException("TESTE");
+                }
+                else {
+                    throw new InvalidOrderException("Invalid Order: Please, verify the Offer Id");
                 }
             }
         }

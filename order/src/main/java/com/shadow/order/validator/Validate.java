@@ -3,6 +3,7 @@ package com.shadow.order.validator;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.shadow.order.configuration.OfferClientConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class Validate implements Validator<Pedido>  {
 	
 	@Autowired
 	private  ProductClientConfig productClient;
+	@Autowired
+	private OfferClientConfig offerClient;
 
 		@Override
 		public void validator(Pedido pedido) {
@@ -25,13 +28,15 @@ public class Validate implements Validator<Pedido>  {
 			for (Item item : itens) {
 				try {
 					productClient.getById(item.getIdProduct());
+
 					
 				} catch (RuntimeException e) {
 					throw new InvalidOrderException("Pedido Inválido");
 				}
 			}
-			
 		}
+
+
 
 
 	

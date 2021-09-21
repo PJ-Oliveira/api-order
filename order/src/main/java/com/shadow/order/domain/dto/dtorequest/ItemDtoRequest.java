@@ -35,8 +35,5 @@ public class ItemDtoRequest {
 	@ApiModelProperty(value="Preco unitário do produto", example="20.00", required=true)
 	@NotNull(message = "${field.item.precoProduct.not.null}")
 	private BigDecimal precoProduct;
-	
-
-    
 
 }

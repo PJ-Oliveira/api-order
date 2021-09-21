@@ -36,7 +36,7 @@ public class PedidoService {
 	@Transactional
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-		validateOffer.validade(pedido);
+		validateOffer.validate(pedido);
 		calcularPedido.somarPedido(pedido);
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
