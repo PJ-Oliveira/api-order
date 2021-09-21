@@ -1,5 +1,6 @@
 package com.shadow.order.validator;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class ValidateOrder implements Validator<Pedido>  {
 				}
 		}
 			this.calcularPedido.calcularPedido(pedido);
+			pedido.setDataPedido(LocalDateTime.now());
 	}
 		
 		

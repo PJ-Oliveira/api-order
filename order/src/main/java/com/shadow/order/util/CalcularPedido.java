@@ -26,6 +26,6 @@ public class CalcularPedido {
 			item.setValorTotalItem(valorTotalItem); 
 			pedido.setTotalPedido(valorTotalPedido);
 		}
-		pedido.setDataPedido(LocalDateTime.now());
+		
 	}	
 }
