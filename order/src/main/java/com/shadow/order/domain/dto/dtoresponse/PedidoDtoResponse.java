@@ -1,7 +1,10 @@
 package com.shadow.order.domain.dto.dtoresponse;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,6 +21,10 @@ public class PedidoDtoResponse {
 	
 	@ApiModelProperty(value = "Retorna lista de Itens referente ao pedido cadastrado")
     private List<ItemDtoResponse> item;
+	
+	@ApiModelProperty(value = "Retorna a data e hora da criação do pedido")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataCriacao;
 	
 	@ApiModelProperty(value = "Retorna o valor total do pedido", example = "50.99")
     private BigDecimal totalPedido;

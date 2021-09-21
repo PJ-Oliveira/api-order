@@ -38,8 +38,7 @@ public class PedidoServiceTest {
 	private ModelMapper modelMapper;
 	@Mock
 	private ValidateOffer validator;
-	@Mock
-	private CalcularPedido calcular;
+	
 	
 	
 	@Test
@@ -106,7 +105,6 @@ public class PedidoServiceTest {
 		
 		given(pedidoRepository.save(pedido)).willReturn(pedido);
 			validator.validade(pedido);
-			calcular.calcularPedido(pedido);
 			when(pedidoService.save(pedidoRequest)).thenReturn(pedidoResponse);
 			
 		verify(pedidoRepository, timeout(1)).save(any());

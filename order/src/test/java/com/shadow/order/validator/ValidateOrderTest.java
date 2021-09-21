@@ -33,6 +33,7 @@ import com.shadow.order.domain.models.Product;
 import com.shadow.order.exception.InvalidOrderException;
 import com.shadow.order.feature.ScenarioFactory;
 import com.shadow.order.service.PedidoService;
+import com.shadow.order.util.CalcularPedido;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class ValidateOrderTest {
@@ -41,7 +42,8 @@ public class ValidateOrderTest {
 	@InjectMocks
 	private ValidateOrder validate;
 	
-	
+	@Mock
+	private CalcularPedido calcularPedido;
 	
 	@Mock 
 	ProductClientConfig productClientConfig;
@@ -55,7 +57,8 @@ public class ValidateOrderTest {
 			
 			validate.validator(pedido);	
 			when(productClientConfig.findById(item.getIdProduct())).thenReturn(product);
-
+			calcularPedido.calcularPedido(pedido);
+			
 			verify(productClientConfig, times(1)).findById(product.getId());
 		
 			

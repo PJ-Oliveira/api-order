@@ -78,10 +78,9 @@ public class PedidoController {
     
 
     @GetMapping("{id}")
-    @ApiOperation(httpMethod = "GET", notes = "Busque a pedido pelo seu respectivo ID",tags = {"Busque pelo ID"}, value="Encontre pedido por ID")
+    @ApiOperation(value = "Exibe um pedido pelo Id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
-            @ApiResponse(code = 401, message = "Não autorizado"),
             @ApiResponse(code = 404, message = "Recurso não encontrado"),
             @ApiResponse(code = 500, message = "Sistema Indisponível")
     })

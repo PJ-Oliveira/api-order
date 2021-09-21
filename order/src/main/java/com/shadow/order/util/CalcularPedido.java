@@ -2,6 +2,7 @@ package com.shadow.order.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -25,5 +26,6 @@ public class CalcularPedido {
 			item.setValorTotalItem(valorTotalItem); 
 			pedido.setTotalPedido(valorTotalPedido);
 		}
+		pedido.setDataCriacao(LocalDateTime.now());
 	}	
 }
