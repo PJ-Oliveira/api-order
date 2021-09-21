@@ -22,9 +22,9 @@ public class PedidoDtoResponse {
 	@ApiModelProperty(value = "Retorna lista de Itens referente ao pedido cadastrado")
     private List<ItemDtoResponse> item;
 	
-	@ApiModelProperty(value = "Retorna a data e hora da criação do pedido")
+	@ApiModelProperty(value = "Retorna a data e hora da criação do pedido", example = "21/09/2021 14:25:00")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dataCriacao;
+    private LocalDateTime dataPedido;
 	
 	@ApiModelProperty(value = "Retorna o valor total do pedido", example = "50.99")
     private BigDecimal totalPedido;

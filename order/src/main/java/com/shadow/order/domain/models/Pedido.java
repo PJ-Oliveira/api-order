@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,8 +36,8 @@ public class Pedido {
     private List<Item> item;
     
     
-    @DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
-    private LocalDateTime dataCriacao;
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    private LocalDateTime dataPedido;
     
     private BigDecimal totalPedido;
 
