@@ -10,15 +10,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PedidoDtoRequest {
 
 	@ApiModelProperty(value = "Informar item a ser adicionado ao produto", required = true)
-	@NotEmpty(message = "${field.pedido.item.not.empty}")
+	@NotEmpty(message = "{field.pedido.item.not.empty}")
 	private List<ItemDtoRequest> item;
 	
 	
+
 }

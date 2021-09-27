@@ -1,11 +1,11 @@
 package com.shadow.order.service;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
-import com.shadow.order.validator.ValidateOffer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,11 @@ import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.repository.PedidoRepository;
-import com.shadow.order.util.CalcularPedido;
-import com.shadow.order.validator.Validate;
+import com.shadow.order.validator.ValidateOrder;
+
+
+
+
 
 @Service
 public class PedidoService {
@@ -26,18 +29,13 @@ public class PedidoService {
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
-	private Validate validateProduct;
-	@Autowired
-	private CalcularPedido calcularPedido;
-	@Autowired
-	private ValidateOffer validateOffer;
+	private ValidateOrder validOrder;
 	
 
 	@Transactional
 	public PedidoDtoResponse save(PedidoDtoRequest pedidoDtoRequest){
 		Pedido pedido = modelMapper.map(pedidoDtoRequest, Pedido.class);
-		validateOffer.validate(pedido);
-		calcularPedido.somarPedido(pedido);
+		validOrder.validator(pedido);
 		pedidoRepository.save(pedido);
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
@@ -56,9 +54,6 @@ public class PedidoService {
 				.orElseThrow(() -> new ResourceNotFoundException("Resource not found " + id ));
 		return modelMapper.map(pedido, PedidoDtoResponse.class);
 	}
-	
-	
-	
 	
 	@Transactional
 	public void delete(Long id) {

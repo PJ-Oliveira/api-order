@@ -1,5 +1,7 @@
 package com.shadow.order.controller;
 
+
+
 import java.net.URI;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +28,11 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 
+@Validated
 @RestController
 @RequestMapping(value = "/order")
 public class PedidoController {
+
 	
     @Autowired
     private  PedidoService pedidoService;
@@ -36,14 +41,14 @@ public class PedidoController {
     @ApiOperation(value = "Realiza cadastro de pedidos")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Requisição bem sucedida"),
-            @ApiResponse(code = 404, message = "Recurso não encontrado"),
-            @ApiResponse(code = 500, message = "Sistema Indisponível")
-    })
-    public ResponseEntity<PedidoDtoResponse> create(@Valid @RequestBody PedidoDtoRequest pedidoDtoRequest){
-    	PedidoDtoResponse pedidoDtoResponse = pedidoService.save(pedidoDtoRequest);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-                .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
-        return ResponseEntity.created(uri).body(pedidoDtoResponse);
+            @ApiResponse(code = 404, message = "Recurso não encontrado")})
+
+    public ResponseEntity<?> create(@Valid @RequestBody PedidoDtoRequest pedidoDtoRequest){
+        PedidoDtoResponse pedidoDtoResponse = pedidoService.save(pedidoDtoRequest);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
+                    .buildAndExpand(pedidoDtoResponse.getIdPedido()).toUri();
+            return ResponseEntity.created(uri).body(pedidoDtoResponse);
+
     }
     
     @GetMapping
@@ -57,16 +62,8 @@ public class PedidoController {
     }    
     
     
-    @GetMapping("/{id}")
-    @ApiOperation(value = "Exibe um pedido informando um id válido")
-   	@ApiResponses(value = {
-   			@ApiResponse(code = 200, message = "Requisição bem sucedida"),
-   			@ApiResponse(code = 404, message = "Recurso não encontrado"),
-   			@ApiResponse(code = 500, message = "Sistema indisponivel")})
-    public ResponseEntity<PedidoDtoResponse> findById(@PathVariable Long id){
-    	PedidoDtoResponse pedidoResponse = pedidoService.findById(id);
-    	return ResponseEntity.ok(pedidoResponse);
-    }
+   
+
     
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletar um pedido informando um id válido")
@@ -79,16 +76,20 @@ public class PedidoController {
     	return ResponseEntity.badRequest().build();
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    @GetMapping("{id}")
+    @ApiOperation(value = "Exibe um pedido pelo Id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Requisição bem sucedida"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado"),
+            @ApiResponse(code = 500, message = "Sistema Indisponível")
+    })
+    public ResponseEntity<?> findOnePedido(@Valid @PathVariable long id){
+        PedidoDtoResponse pedidoDtoResponse = pedidoService.findById(id);
+        if(pedidoDtoResponse != null) {
+            return ResponseEntity.ok().body(pedidoDtoResponse);
+        } return ResponseEntity.ok().body("Offer Id ou Product id invalid or expired");
+    }
+
+
 }
