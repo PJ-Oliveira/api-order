@@ -95,8 +95,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
-
 	</dependencies>
 
 
@@ -119,11 +117,12 @@
 				<version>0.8.7</version>
 				<configuration>
 					<excludes>
-						<exclude>**/*/PedidoServiceTest.class</exclude>
+						<exclude>**/*/OrderMicroserviceApplication.class</exclude>
 						<exclude>**/*/domain/**</exclude>
 						<exclude>**/*/configuration/**</exclude>
 						<exclude>**/*/exception/**</exclude>
 						<exclude>**/*/controller/**</exclude>
+						<exclude>**/*/ValidateOffer.class</exclude>
 					</excludes>
 
 				</configuration>

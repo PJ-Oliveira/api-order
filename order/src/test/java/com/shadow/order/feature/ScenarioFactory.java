@@ -59,6 +59,11 @@ public class ScenarioFactory {
 	}
 	
 	public static PedidoDtoResponse newPedidoResponse() {
+		PedidoDtoResponse pedidoResponse = new PedidoDtoResponse();
+		pedidoResponse.setIdPedido(newPedido().getIdPedido());
+		pedidoResponse.setDataPedido(LocalDateTime.now());
+		pedidoResponse.setTotalPedido(newPedido().getTotalPedido());
+		
 		return new PedidoDtoResponse();
 	}
 	

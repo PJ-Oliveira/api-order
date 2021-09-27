@@ -7,6 +7,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -51,7 +52,8 @@ public class PedidoServiceTest {
 			when(modelMapper.map(pedido, PedidoDtoResponse.class)).thenReturn(pedidoResponse);
 			pedidoService.findById(1L);
 		
-			verify(pedidoRepository, timeout(1)).findById(1L);
+			verify(pedidoRepository, times(1)).findById(1L);
+			verify(modelMapper, times(1)).map(pedido, PedidoDtoResponse.class);
 		
 	}
 	
@@ -116,6 +118,9 @@ public class PedidoServiceTest {
 		pedidoService.save(pedidoRequest);
 			
 		verify(pedidoRepository, timeout(1)).save(pedido);
+		verify(modelMapper, times(1)).map(pedidoRequest, Pedido.class);
+		verify(modelMapper, times(1)).map(pedido, PedidoDtoResponse.class);
+	
 		
 	}
 	
