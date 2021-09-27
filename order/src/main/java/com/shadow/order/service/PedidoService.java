@@ -15,7 +15,6 @@ import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.repository.PedidoRepository;
-import com.shadow.order.util.CalcularPedido;
 import com.shadow.order.validator.ValidateOrder;
 
 

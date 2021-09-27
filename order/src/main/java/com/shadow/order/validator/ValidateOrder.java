@@ -27,18 +27,18 @@ public class ValidateOrder implements Validator<Pedido>  {
 			List<Item> itens = new ArrayList<>();
 			itens = pedido.getItem(); 
 			for (Item item : itens) {
-			
-
 				try {
-					productClient.findById(item.getIdProduct());
-					
-				} catch (RuntimeException e) {
-					throw new InvalidOrderException("Pedido Inválido");
-				}
+				productClient.findById(item.getIdProduct());
+			}catch(RuntimeException e) {
+				throw new InvalidOrderException("Pedido inválido, item "+item.getIdProduct()+" não existente");
+			}
 		}
+		
 			this.calcularPedido.calcularPedido(pedido);
 			pedido.setDataPedido(LocalDateTime.now());
 	}
+	
+		
 		
 		
 		

@@ -2,8 +2,10 @@ package com.shadow.order.feature;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.shadow.order.domain.dto.dtorequest.PedidoDtoRequest;
 import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
@@ -18,21 +20,18 @@ public class ScenarioFactory {
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(1L);
 		pedido.setItem(newItemList());
-		
+		pedido.setDataPedido(LocalDateTime.now());
+		pedido.setTotalPedido(newCalculo());
 		return pedido;
 		
 	}
 	
-	public static PedidoDtoResponse newPedidoResponse() {
-		return new PedidoDtoResponse();
-	}
-	
-	public static PedidoDtoRequest newPedidoRequest() {
-		return new PedidoDtoRequest();
-	}
-	
 	public static Item newItem() {
 		Item itens = new Item();
+		itens.setIdItem(1L);
+		itens.setIdOffer(1L);
+		itens.setIdProduct(1L);
+		itens.setNomeProduct("Anador");
 		itens.setPrecoProduct(new BigDecimal(15.99));
 		itens.setDesconto(new BigDecimal(1.89));
 		return itens;
@@ -48,6 +47,19 @@ public class ScenarioFactory {
 		List<Pedido> pedidos = new ArrayList<>();
 		pedidos.add(newPedido());
 		return pedidos;
+	}
+	
+	public static Optional<Pedido> newOptionalPedido(){
+		Optional<Pedido> pedidoOptional = Optional.of(newPedido());
+		return pedidoOptional;
+	}
+	
+	public static PedidoDtoRequest newPedidoRequest() {
+		return new PedidoDtoRequest();
+	}
+	
+	public static PedidoDtoResponse newPedidoResponse() {
+		return new PedidoDtoResponse();
 	}
 	
 	public static Product newProduct() {

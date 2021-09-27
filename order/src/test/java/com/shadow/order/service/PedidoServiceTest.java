@@ -3,9 +3,9 @@ package com.shadow.order.service;
 
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -19,14 +19,14 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
+import com.shadow.order.domain.dto.dtoresponse.PedidoDtoResponse;
 import com.shadow.order.domain.models.Pedido;
 import com.shadow.order.exception.ResourceNotFoundException;
 import com.shadow.order.feature.ScenarioFactory;
 import com.shadow.order.repository.PedidoRepository;
-import com.shadow.order.util.CalcularPedido;
-import com.shadow.order.validator.ValidateOffer;
+import com.shadow.order.validator.ValidateOrder;
 
-@RunWith(MockitoJUnitRunner.Silent.class)
+@RunWith(MockitoJUnitRunner.class)
 public class PedidoServiceTest {
 	
 	
@@ -37,15 +37,18 @@ public class PedidoServiceTest {
 	@Mock
 	private ModelMapper modelMapper;
 	@Mock
-	private ValidateOffer validator;
+	private ValidateOrder validatorOrder;
 	
 	
 	
 	@Test
-	public void findById_PedidoFindById_ExpectedSuccess() {
+	public void findById_WhenReceiveValidIdOrder_ExpectedSuccess() {
 		var pedido = ScenarioFactory.newPedido();
-		Optional<Pedido> pedidos = Optional.of(pedido);
-		given(pedidoRepository.findById(1L)).willReturn(pedidos);
+		var pedidoOptional = ScenarioFactory.newOptionalPedido();
+		var pedidoResponse = ScenarioFactory.newPedidoResponse();
+		
+			when(pedidoRepository.findById(eq(pedido.getIdPedido()))).thenReturn(pedidoOptional);
+			when(modelMapper.map(pedido, PedidoDtoResponse.class)).thenReturn(pedidoResponse);
 			pedidoService.findById(1L);
 		
 			verify(pedidoRepository, timeout(1)).findById(1L);
@@ -53,9 +56,9 @@ public class PedidoServiceTest {
 	}
 	
 	@Test
-	public void findById_PedidoNotFindById_ExpectedThrownsException() {
+	public void findById_WhenReceiveIdOrderNotValid_ExpectedThrownsException() {
 		var pedido = ScenarioFactory.newPedido();
-		given(pedidoRepository.findById(eq(pedido.getIdPedido()))).willReturn(Optional.empty());
+		given(pedidoRepository.findById(2L)).willReturn(Optional.empty());
 		
 			assertThatThrownBy(()-> pedidoService.findById(2L))
 								.isInstanceOf(ResourceNotFoundException.class)
@@ -67,19 +70,19 @@ public class PedidoServiceTest {
 	}
 	
 	@Test
-	public void delete_PedidoDeleteFindById_ExpectedSuccess(){
+	public void delete_WhenReceiveIdOrderValid_ExpectedSuccess(){
 		var pedido = ScenarioFactory.newPedido();
-		Optional<Pedido> pedidos = Optional.of(pedido);
-			when(pedidoRepository.findById(eq(pedido.getIdPedido()))).thenReturn(pedidos);
+		Optional<Pedido> pedidoOptional = Optional.of(pedido);
+			when(pedidoRepository.findById(eq(pedido.getIdPedido()))).thenReturn(pedidoOptional);
 			pedidoService.delete(1L);
 			
 			verify(pedidoRepository, timeout(1)).delete(pedido);
 	}
 	
 	@Test
-	public void delete_PedidoDeleteNotFindById_ExpectdThrownsException() {
+	public void delete_WhenReceiveIdOrderNotValid_ExpectdThrownsException() {
 		var pedido = ScenarioFactory.newPedido();
-		given(pedidoRepository.findById(eq(pedido.getIdPedido()))).willReturn(Optional.empty());
+		given(pedidoRepository.findById(2L)).willReturn(Optional.empty());
 		
 			assertThatThrownBy(()-> pedidoService.delete(2L))
 								.isInstanceOf(ResourceNotFoundException.class)
@@ -87,12 +90,14 @@ public class PedidoServiceTest {
 			
 			verify(pedidoRepository, timeout(1)).findById(2L);
 	}
+	
+	
 	@Test
-	public void findAll_PedidoAllList_ExpectedSuccess() {
-		var pedidos = ScenarioFactory.newListPedido();
+	public void findAll_WhenSearchingAllOrders_ExpectedSuccess() {
+		var listPedidos = ScenarioFactory.newListPedido();
 		
-		given(pedidoRepository.findAll()).willReturn(pedidos);
-			pedidoService.getAll();
+		given(pedidoRepository.findAll()).willReturn(listPedidos);
+		pedidoService.getAll();
 		
 		verify(pedidoRepository, timeout(1)).findAll();
 	}
@@ -103,13 +108,16 @@ public class PedidoServiceTest {
 		var pedidoResponse = ScenarioFactory.newPedidoResponse();
 		var pedidoRequest = ScenarioFactory.newPedidoRequest();
 		
-		given(pedidoRepository.save(pedido)).willReturn(pedido);
-			validator.validade(pedido);
-			when(pedidoService.save(pedidoRequest)).thenReturn(pedidoResponse);
-			
-		verify(pedidoRepository, timeout(1)).save(any());
+		when(modelMapper.map(pedidoRequest, Pedido.class)).thenReturn(pedido);
+		doNothing().when(validatorOrder).validator(pedido);
+		when(pedidoRepository.save(pedido)).thenReturn(pedido);
+		when(modelMapper.map(pedido, PedidoDtoResponse.class)).thenReturn(pedidoResponse);
 		
-				}
+		pedidoService.save(pedidoRequest);
+			
+		verify(pedidoRepository, timeout(1)).save(pedido);
+		
+	}
 	
 	
 	

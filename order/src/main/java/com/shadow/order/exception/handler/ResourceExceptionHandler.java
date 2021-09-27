@@ -27,7 +27,7 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		
 		@ExceptionHandler(InvalidOrderException.class)
-		public ResponseEntity<StandardError> resourceNotFoundProduct(InvalidOrderException e, HttpServletRequest request){
+		public ResponseEntity<StandardError> invalidOrder(InvalidOrderException e, HttpServletRequest request){
 			String error = "Erro ao tentar salvar o pedido";
 			HttpStatus status = HttpStatus.NOT_FOUND;
 			StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());

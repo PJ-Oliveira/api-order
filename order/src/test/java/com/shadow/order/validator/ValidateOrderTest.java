@@ -1,24 +1,9 @@
 package com.shadow.order.validator;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
-
-
-import java.util.Optional;
-
-
-import static org.mockito.BDDMockito.given;
-
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,12 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.shadow.order.configuration.ProductClientConfig;
-import com.shadow.order.domain.models.Item;
-import com.shadow.order.domain.models.Pedido;
-import com.shadow.order.domain.models.Product;
-import com.shadow.order.exception.InvalidOrderException;
 import com.shadow.order.feature.ScenarioFactory;
-import com.shadow.order.service.PedidoService;
 import com.shadow.order.util.CalcularPedido;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
@@ -56,22 +36,11 @@ public class ValidateOrderTest {
 		var item = ScenarioFactory.newItem();
 			
 			validate.validator(pedido);	
-			when(productClientConfig.findById(item.getIdProduct())).thenReturn(product);
+			when(productClientConfig.findById(eq(item.getIdProduct()))).thenReturn(product);
 			calcularPedido.calcularPedido(pedido);
 			
-			verify(productClientConfig, times(1)).findById(product.getId());
-		
+			verify(productClientConfig, times(1)).findById(item.getIdProduct());
 			
 	}
 	
-	@Test
-	public void validate_checkNotProductExistenceInTheProductMicroservice_ExpectedThrownException() {
-	
-		
-		
-		
-	}
-	
-	
-		
 }

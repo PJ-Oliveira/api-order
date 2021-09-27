@@ -11,6 +11,6 @@ public interface ProductClientConfig {
 
 
     @GetMapping(value = "/{id}", consumes ="application/json")
-   Product findById(@PathVariable("id") Long id);
+    Product  findById(@PathVariable("id") Long id);
 
 }
