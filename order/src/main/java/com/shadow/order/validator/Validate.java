@@ -28,8 +28,6 @@ public class Validate implements Validator<Pedido>  {
 			for (Item item : itens) {
 				try {
 					productClient.getById(item.getIdProduct());
-
-					
 				} catch (RuntimeException e) {
 					throw new InvalidOrderException("Pedido Inválido");
 				}
